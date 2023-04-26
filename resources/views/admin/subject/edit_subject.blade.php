@@ -1,6 +1,6 @@
 <div class="eoff-form">
     <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('admin.subject.update', ['id' => $subject->id]) }}">
-        @csrf 
+        @csrf
         <div class="form-row">
 
             <div class="fpb-7">
@@ -18,6 +18,19 @@
                 <input type="text" class="form-control eForm-control" value="{{ $subject->name }}" id="name" name = "name" required>
             </div>
 
+
+            <div class="fpb-7">
+                <label for="class_id_on_create" class="eForm-label">{{ get_phrase('Edit assigned teacher') }}</label>
+                <select name="teacher_id" id="teacher_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
+                    <option value="">{{ get_phrase('Select a teacher') }}</option>
+                        @foreach($teacher as $teach)
+                            <option value="{{ $teach->id }}" {{ $teach->id == $subject->teacher_id ? 'selected':'' }}>{{ $teach->name }}</option>
+                        @endforeach
+                </select>
+            </div>
+
+
+
             <div class="fpb-7 pt-2">
                 <button class="btn-form" type="submit">{{ get_phrase('Update subject') }}</button>
             </div>
@@ -31,3 +44,13 @@
       $(".eChoice-multiple-with-remove").select2();
     });
 </script>
+
+{{-- <div class="fpb-7">
+    <label for="class_id_on_create" class="eForm-label">{{ get_phrase('Asign a tearcher') }}</label>
+    <select name="teacher_id" id="teacher_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
+        <option value="">{{ get_phrase('select a teacher to handle') }}</option>
+         @foreach($teacher as $teach)
+        <option value="{{ $teach->id }}">{{ $teach->name }}</option>
+        @endforeach
+    </select>
+</div> --}}

@@ -616,7 +616,7 @@ Route::controller(ParentController::class)->middleware('parent','auth')->group(f
     Route::get('parent/profile', 'profile')->name('parent.profile');
     Route::post('parent/profile/update', 'profile_update')->name('parent.profile.update');
     Route::any('parent/password/{action_type}', 'password')->name('parent.password');
-    
+
 
 });
 //Parent routes end here
@@ -797,7 +797,7 @@ Route::controller(LibrarianController::class)->middleware('librarian','auth')->g
 
     //Event routes
     Route::get('librarian/events/list', 'eventList')->name('librarian.events.list');
-    
+
 
     //Profile
     Route::get('librarian/profile', 'profile')->name('librarian.profile');
