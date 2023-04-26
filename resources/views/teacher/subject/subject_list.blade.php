@@ -2,7 +2,6 @@
 
 @extends('teacher.navigation')
 
-
 @section('content')
 <div class="mainSection-title">
     <div class="row">
@@ -25,53 +24,40 @@
 
 <div class="row">
     <div class="col-7 offset-md-2">
-        <div class="eSection-wrap">
-            <form method="GET" class="d-block ajaxForm" action="{{ route('teacher.subject_list') }}">
-                <div class="row mt-3">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                        <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
-                            <option value="">{{ get_phrase('Select a class') }}</option>
-                            @foreach($classes as $class)
-                                <option value="{{ $class->id }}" {{ $class_id == $class->id ?  'selected':'' }}>{{ $class->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <button class="eBtn eBtn btn-secondary" type="submit" id = "filter_routine">{{ get_phrase('Filter') }}</button>
-                    </div>
-                </div>
-            </form>
+        <div class="eSection-wrap pb-2">
+        	@if(count($subjects) > 0)
+        		<table id="basic-datatable" class="table eTable">
+        			<thead>
+						<tr>
+							<th>{{ get_phrase('Name') }}</th>
 
-            @if(count($subjects) > 0)
-            <table class="table eTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>{{ get_phrase('Name') }}</th>
-                        <th>{{ get_phrase('Class') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($subjects as $key => $subject)
-                        <?php $class = Classes::get()->where('id', $subject->class_id)->first(); ?>
-                         <tr>
-                            <td>{{ $subjects->firstItem() + $key }}</td>
-                            <td>{{ $subject->name }}</td>
-                            <td>{{ $class->name }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {!! $subjects->appends(request()->all())->links() !!}
-            @else
-            <div class="empty_box center">
-                <img class="mb-3" width="150px" src="{{ asset('public/assets/images/empty_box.png') }}" />
-                <br>
-                <span class="">{{ get_phrase('No data found') }}</span>
-            </div>
-            @endif
+                            <th>{{ get_phrase('Class') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($subjects as $subject)
+						<tr>
+							<td>{{ $subject['name'] }}</td>
+                            <td>
+                                <?php $class_details = Classes::find($subject['class_id']); ?>
+                                {{ $class_details['name'] }}
+                            </td>
+						</tr>
+						@endforeach
+					</tbody>
+        		</table>
+                {!! $subjects->appends(request()->all())->links() !!}
+        	@else
+        		<div class="empty_box center">
+                    <img class="mb-3" width="150px" src="{{ asset('public/assets/images/empty_box.png') }}" />
+                    <br>
+                    <span class="">{{ get_phrase('No data found') }}</span>
+                </div>
+        	@endif
         </div>
     </div>
 </div>
 @endsection
+
+
+

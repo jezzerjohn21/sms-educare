@@ -1,7 +1,9 @@
 <?php use App\Models\Classes; ?>
+<?php use App\Models\User; ?>
+
 
 @extends('admin.navigation')
-   
+
 @section('content')
 <div class="mainSection-title">
     <div class="row">
@@ -15,6 +17,7 @@
               <li><a href="#">{{ get_phrase('Home') }}</a></li>
               <li><a href="#">{{ get_phrase('Academic') }}</a></li>
               <li><a href="#">{{ get_phrase('Subjects') }}</a></li>
+
             </ul>
           </div>
           <div class="export-btn-area">
@@ -52,16 +55,22 @@
                             <th>#</th>
                             <th>{{ get_phrase('Name') }}</th>
                             <th>{{ get_phrase('Class') }}</th>
+                            <th>{{ get_phrase('teacher assigned') }}</th>
                             <th class="text-end">{{ get_phrase('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($subjects as $key => $subject)
                             <?php $class = Classes::get()->where('id', $subject->class_id)->first(); ?>
+                            <?php $teacher = User::get()->where('id', $subject->class_id)->first(); ?>
                              <tr>
                                 <td>{{ $subjects->firstItem() + $key }}</td>
                                 <td>{{ $subject->name }}</td>
                                 <td>{{ $class->name }}</td>
+                                <td>{{ $subject->teacher_id }}</td>
+
+
+                                {{-- <option value="{{ $teach->id }}" {{ $teach->id == $subject->teacher_id ? 'selected':'' }}>{{ $teach->name }}</option> --}}
                                 <td class="text-start">
                                     <div class="adminTable-action">
                                         <button

@@ -62,7 +62,7 @@ class TeacherController extends Controller
         }
 
         $classes = $permitted_classes;
-        
+
         return view('teacher.marks.index', ['exam_categories' => $exam_categories, 'classes' => $classes]);
     }
 
@@ -163,22 +163,63 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function subjectList(Request $request)
-    {
-        $classes = Classes::where('school_id', auth()->user()->school_id)->get();
 
-        if (count($request->all()) > 0 && $request->class_id != '') {
+    public function subjectList(Request $request)
+    {   $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
+        $classes = Subject::where('teacher_id', auth()->user()->id)
+                            ->where('session_id', $active_session)->get();
+
+
+
+        if (count($request->all()) > 0 && $request->teacher_id != '') {
 
             $data = $request->all();
-            $class_id = $data['class_id'];
-            $subjects = Subject::where('class_id', $class_id)->paginate(10);
+            $teacher_id = $data['teacher_id'];
+            $subjects = Subject::where('teacher_id', $teacher_id)->paginate(10);
         } else {
-            $subjects = Subject::where('school_id', auth()->user()->school_id)->paginate(10);
-            $class_id = '';
+            $subjects = Subject::where('teacher_id', auth()->user()->id)->paginate(10);
+            $teacher_id = '';
         }
 
-        return view('teacher.subject.subject_list', compact('subjects','classes', 'class_id'));
+
+
+
+        return view('teacher.subject.subject_list', compact('subjects','classes', 'teacher_id'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // {
+    //     $classes = Classes::where('school_id', auth()->user()->school_id)->get();
+
+    //     if (count($request->all()) > 0 && $request->class_id != '') {
+
+    //         $data = $request->all();
+    //         $class_id = $data['class_id'];
+    //         $subjects = Subject::where('class_id', $class_id)->paginate(10);
+    //     } else {
+    //         $subjects = Subject::where('school_id', auth()->user()->school_id)->paginate(10);
+    //         $class_id = '';
+    //     }
+
+    //     return view('teacher.subject.subject_list', dd(compact('subjects','classes', 'class_id')));
+    // }
 
     /**
      * Show the gradebook.
@@ -232,7 +273,7 @@ class TeacherController extends Controller
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
 
         $subject_wise_mark_list = Gradebook::where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'exam_category_id' => $data['exam_category_id'], 'student_id' => $student_id, 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->first();
-        
+
         echo view('teacher.gradebook.subject_marks', ['subject_wise_mark_list' => $subject_wise_mark_list]);
     }
 
@@ -342,7 +383,7 @@ class TeacherController extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['designation'] = $request->designation;
-        
+
         $user_info['birthday'] = strtotime($request->eDefaultDateRange);
         $user_info['gender'] = $request->gender;
         $user_info['phone'] = $request->phone;
@@ -361,7 +402,7 @@ class TeacherController extends Controller
         $data['user_information'] = json_encode($user_info);
 
         User::where('id', auth()->user()->id)->update($data);
-        
+
         return redirect(route('teacher.profile'))->with('message', get_phrase('Profile info updated successfully'));
     }
 
@@ -371,7 +412,7 @@ class TeacherController extends Controller
 
         if($action_type == 'update'){
 
-            
+
 
             if($request->new_password != $request->confirm_password){
                 return back()->with("error", "Confirm Password Doesn't match!");
@@ -489,7 +530,7 @@ class TeacherController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function dailyAttendance()
+    public function dailyAttendance() //attendance need to edit
     {
         $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)->select('class_id')->distinct()->get()->toArray();
         $classes=array();
@@ -549,7 +590,7 @@ class TeacherController extends Controller
             $class_details = Classes::where('id', $distinct_class['class_id'])->first()->toArray();
             $classes[$key] = $class_details;
         }
-        
+
         return view('teacher.attendance.take_attendance', ['classes' => $classes]);
     }
 
@@ -614,7 +655,7 @@ class TeacherController extends Controller
 
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
 
-      
+
         $date = '01 ' . $data['month'] . ' ' . $data['year'];
 
 
@@ -630,7 +671,7 @@ class TeacherController extends Controller
 
         $no_of_users = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['school_id' => auth()->user()->school_id,  'session_id' => $active_session])->distinct()->count('student_id');
         $attendance_of_students = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['school_id' => auth()->user()->school_id,  'session_id' => $active_session])->get()->toArray();
-       
+
 
         $csv_content ="Student"."/".get_phrase('Date');
         $number_of_days = date('m', $page_data['attendance_date']) == 2 ? (date('Y', $page_data['attendance_date']) % 4 ? 28 : (date('m', $page_data['attendance_date']) % 100 ? 29 : (date('m', $page_data['attendance_date']) % 400 ? 28 : 29))) : ((date('m', $page_data['attendance_date']) - 1) % 7 % 2 ? 30 : 31);

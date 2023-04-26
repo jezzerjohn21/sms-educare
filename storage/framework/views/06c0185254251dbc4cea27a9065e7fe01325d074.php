@@ -1,6 +1,4 @@
-@extends('admin.navigation')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <?php
 
@@ -17,15 +15,15 @@ use App\Models\Section;
           class="d-flex justify-content-between align-items-center flex-wrap gr-15"
         >
           <div class="d-flex flex-column">
-            <h4>{{ get_phrase('Students') }}</h4>
+            <h4><?php echo e(get_phrase('Students')); ?></h4>
             <ul class="d-flex align-items-center eBreadcrumb-2">
-              <li><a href="#">{{ get_phrase('Home') }}</a></li>
-              <li><a href="#">{{ get_phrase('Users') }}</a></li>
-              <li><a href="#">{{ get_phrase('Students') }}</a></li>
+              <li><a href="#"><?php echo e(get_phrase('Home')); ?></a></li>
+              <li><a href="#"><?php echo e(get_phrase('Users')); ?></a></li>
+              <li><a href="#"><?php echo e(get_phrase('Students')); ?></a></li>
             </ul>
           </div>
           <div class="export-btn-area">
-            <a href="{{ route('admin.offline_admission.single', ['type' => 'single']) }}" class="export_btn">{{ get_phrase('Create Student') }}</a>
+            <a href="<?php echo e(route('admin.offline_admission.single', ['type' => 'single'])); ?>" class="export_btn"><?php echo e(get_phrase('Create Student')); ?></a>
           </div>
         </div>
       </div>
@@ -39,7 +37,7 @@ use App\Models\Section;
             <div
               class="search-filter-area d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15"
             >
-              <form action="{{ route('admin.student') }}">
+              <form action="<?php echo e(route('admin.student')); ?>">
                 <div
                   class="search-input d-flex justify-content-start align-items-center"
                 >
@@ -62,16 +60,16 @@ use App\Models\Section;
                     type="text"
                     id="search"
                     name="search"
-                    value="{{ $search }}"
+                    value="<?php echo e($search); ?>"
                     placeholder="Search user"
                     class="form-control"
                   />
-                  @if($class_id != '')
-                  <input type="hidden" name="class_id" id="class_id" value="{{ $class_id }}">
-                  @endif
-                  @if($section_id != '')
-                  <input type="hidden" name="section_id" id="section_id" value="{{ $section_id }}">
-                  @endif
+                  <?php if($class_id != ''): ?>
+                  <input type="hidden" name="class_id" id="class_id" value="<?php echo e($class_id); ?>">
+                  <?php endif; ?>
+                  <?php if($section_id != ''): ?>
+                  <input type="hidden" name="section_id" id="section_id" value="<?php echo e($section_id); ?>">
+                  <?php endif; ?>
                 </div>
               </form>
               <div class="filter-export-area d-flex align-items-center">
@@ -99,35 +97,36 @@ use App\Models\Section;
                         />
                       </svg>
                     </span>
-                    {{ get_phrase('Filter') }}
+                    <?php echo e(get_phrase('Filter')); ?>
+
                   </button>
                   <div
                     class="dropdown-menu dropdown-menu-end filter-options"
                     aria-labelledby="defaultDropdown"
                   >
-                    <h4 class="title">{{ get_phrase('Filter Options') }}</h4>
-                    <form action="{{ route('admin.student') }}">
+                    <h4 class="title"><?php echo e(get_phrase('Filter Options')); ?></h4>
+                    <form action="<?php echo e(route('admin.student')); ?>">
                       <div class="filter-option d-flex flex-column">
-                        @if($search != '')
-                        <input type="hidden" name="search" id="search" value="{{ $search }}">
-                        @endif
+                        <?php if($search != ''): ?>
+                        <input type="hidden" name="search" id="search" value="<?php echo e($search); ?>">
+                        <?php endif; ?>
                         <div>
                           <label for="class_id" class="eForm-label"
-                            >{{ get_phrase('Class') }}</label
+                            ><?php echo e(get_phrase('Class')); ?></label
                           >
                           <select
                             class="form-select" name="class_id"
                             id="class_id" onchange="classWiseSection(this.value)" required
                           >
-                            <option value="">{{ get_phrase('Select a class') }}</option>
-                            @foreach($classes as $class)
-                                <option value="{{ $class->id }}" {{ $class_id == $class->id ?  'selected':'' }}>{{ $class->name }}</option>
-                            @endforeach
+                            <option value=""><?php echo e(get_phrase('Select a class')); ?></option>
+                            <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $class): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($class->id); ?>" <?php echo e($class_id == $class->id ?  'selected':''); ?>><?php echo e($class->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                           </select>
                         </div>
                         <div>
                           <label for="section_id" class="eForm-label"
-                            >{{ get_phrase('Section') }}</label
+                            ><?php echo e(get_phrase('Section')); ?></label
                           >
                           <select
                             class="form-select"
@@ -136,11 +135,11 @@ use App\Models\Section;
                           >
                             <?php if($class_id !=""){
                                 $sections = Section::get()->where('class_id', $class_id); ?>
-                                @foreach($sections as $section)
-                                    <option value="{{ $section->id }}" {{ $section_id == $section->id ?  'selected':'' }}>{{ $section->name }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($section->id); ?>" <?php echo e($section_id == $section->id ?  'selected':''); ?>><?php echo e($section->name); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php } else { ?>
-                                <option value="">{{ get_phrase('First select a class') }}</option>
+                                <option value=""><?php echo e(get_phrase('First select a class')); ?></option>
                             <?php } ?>
                           </select>
                         </div>
@@ -149,14 +148,14 @@ use App\Models\Section;
                         class="filter-button d-flex justify-content-end align-items-center"
                       >
                         <a class="form-group">
-                          <button class="eBtn eBtn btn-primary" type="submit">{{ get_phrase('Apply') }}</button>
+                          <button class="eBtn eBtn btn-primary" type="submit"><?php echo e(get_phrase('Apply')); ?></button>
                         </a>
                       </div>
                     </form>
                   </div>
                 </div>
                 <!-- Export Button -->
-                @if(count($students) > 0)
+                <?php if(count($students) > 0): ?>
                 <div class="position-relative">
                   <button
                     class="eBtn-3 dropdown-toggle"
@@ -181,23 +180,24 @@ use App\Models\Section;
                         />
                       </svg>
                     </span>
-                    {{ get_phrase('Export') }}
+                    <?php echo e(get_phrase('Export')); ?>
+
                   </button>
                   <ul
                     class="dropdown-menu dropdown-menu-end eDropdown-menu-2"
                   >
                     <li>
-                        <a class="dropdown-item" id="pdf" href="javascript:;" onclick="Export()">{{ get_phrase('PDF') }}</a>
+                        <a class="dropdown-item" id="pdf" href="javascript:;" onclick="Export()"><?php echo e(get_phrase('PDF')); ?></a>
                     </li>
                     <li>
-                        <a class="dropdown-item" id="print" href="javascript:;" onclick="printableDiv('student_list')">{{ get_phrase('Print') }}</a>
+                        <a class="dropdown-item" id="print" href="javascript:;" onclick="printableDiv('student_list')"><?php echo e(get_phrase('Print')); ?></a>
                     </li>
                   </ul>
                 </div>
-                @endif
+                <?php endif; ?>
               </div>
             </div>
-            @if(count($students) > 0)
+            <?php if(count($students) > 0): ?>
             <!-- Table -->
             <div class="table-responsive">
               <table class="table eTable eTable-2">
@@ -205,13 +205,13 @@ use App\Models\Section;
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Student ID #</th>
-                    <th scope="col">{{ get_phrase('Full Name') }}</th>
-                    <th scope="col">{{ get_phrase('Email') }}</th>
-                    <th scope="col">{{ get_phrase('User Info') }}</th>
-                    <th scope="col">{{ get_phrase('Options') }}</th>
+                    <th scope="col"><?php echo e(get_phrase('Full Name')); ?></th>
+                    <th scope="col"><?php echo e(get_phrase('Email')); ?></th>
+                    <th scope="col"><?php echo e(get_phrase('User Info')); ?></th>
+                    <th scope="col"><?php echo e(get_phrase('Options')); ?></th>
                 </thead>
                 <tbody>
-                    @foreach($students as $key => $user)
+                    <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php
 
                         $student = DB::table('users')->where('id', $user->user_id)->first();
@@ -223,10 +223,10 @@ use App\Models\Section;
                     ?>
                       <tr>
                         <th scope="row">
-                          <p class="row-number">{{ $students->firstItem() + $key }}</p>
+                          <p class="row-number"><?php echo e($students->firstItem() + $key); ?></p>
                         </th>
                         <th scope="row">
-                          <p class="row-number">{{ $student->code}}</p>
+                          <p class="row-number"><?php echo e($student->code); ?></p>
                         </th>
                         <td>
                           <div
@@ -237,29 +237,32 @@ use App\Models\Section;
                                 class="img-fluid"
                                 width="60"
                                 height="60"
-                                src="{{ $user_image }}"
+                                src="<?php echo e($user_image); ?>"
                               />
                             </div>
                             <div class="dAdmin_profile_name dAdmin_info_name">
-                              <h4>{{ $student->name }}</h4>
+                              <h4><?php echo e($student->name); ?></h4>
                               <p>
-                                <span>{{ get_phrase('Class') }}:</span> {{ $student_details->class_name }}
+                                <span><?php echo e(get_phrase('Class')); ?>:</span> <?php echo e($student_details->class_name); ?>
+
                                 <br>
-                                <span>{{ get_phrase('Section') }}:</span> {{ $student_details->section_name }}
+                                <span><?php echo e(get_phrase('Section')); ?>:</span> <?php echo e($student_details->section_name); ?>
+
                               </p>
                             </div>
                           </div>
                         </td>
                         <td>
                           <div class="dAdmin_info_name min-w-250px">
-                            <p>{{ $student->email }}</p>
+                            <p><?php echo e($student->email); ?></p>
                           </div>
                         </td>
                         <td>
                           <div class="dAdmin_info_name min-w-250px">
-                            <p><span>{{ get_phrase('Phone') }}:</span> {{ $info->phone }}</p>
+                            <p><span><?php echo e(get_phrase('Phone')); ?>:</span> <?php echo e($info->phone); ?></p>
                             <p>
-                              <span>{{ get_phrase('Address') }}:</span> {{ $info->address }}
+                              <span><?php echo e(get_phrase('Address')); ?>:</span> <?php echo e($info->address); ?>
+
                             </p>
                           </div>
                         </td>
@@ -271,64 +274,66 @@ use App\Models\Section;
                               data-bs-toggle="dropdown"
                               aria-expanded="false"
                             >
-                              {{ get_phrase('Actions') }}
+                              <?php echo e(get_phrase('Actions')); ?>
+
                             </button>
                             <ul
                               class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                             >
                               <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="largeModal('{{ route('admin.student.id_card', ['id' => $student->id]) }}', '{{ get_phrase('Generate id card') }}')">{{ get_phrase('Generate Id card') }}</a>
+                                <a class="dropdown-item" href="javascript:;" onclick="largeModal('<?php echo e(route('admin.student.id_card', ['id' => $student->id])); ?>', '<?php echo e(get_phrase('Generate id card')); ?>')"><?php echo e(get_phrase('Generate Id card')); ?></a>
                               </li>
 
                               <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.student_edit_modal', ['id' => $student->id]) }}', 'Edit Student')">{{ get_phrase('Edit') }}</a>
+                                <a class="dropdown-item" href="javascript:;" onclick="rightModal('<?php echo e(route('admin.student_edit_modal', ['id' => $student->id])); ?>', 'Edit Student')"><?php echo e(get_phrase('Edit')); ?></a>
                               </li>
                               <li>
-                                <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('admin.student.delete', ['id' => $student->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>
+                                <a class="dropdown-item" href="javascript:;" onclick="confirmModal('<?php echo e(route('admin.student.delete', ['id' => $student->id])); ?>', 'undefined');"><?php echo e(get_phrase('Delete')); ?></a>
                               </li>
                             </ul>
                           </div>
                         </td>
                       </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
               </table>
 
               <div
                   class="admin-tInfo-pagi d-flex justify-content-md-between justify-content-center align-items-center flex-wrap gr-15"
                 >
-                  <p class="admin-tInfo">{{ get_phrase('Showing').' 1 - '.count($students).' '.get_phrase('from').' '.$students->total().' '.get_phrase('data') }}</p>
+                  <p class="admin-tInfo"><?php echo e(get_phrase('Showing').' 1 - '.count($students).' '.get_phrase('from').' '.$students->total().' '.get_phrase('data')); ?></p>
                   <div class="admin-pagi">
-                    {!! $students->appends(request()->all())->links() !!}
+                    <?php echo $students->appends(request()->all())->links(); ?>
+
                   </div>
                 </div>
               </div>
 
             </div>
-            @else
+            <?php else: ?>
             <div class="empty_box center">
-              <img class="mb-3" width="150px" src="{{ asset('public/assets/images/empty_box.png') }}" />
+              <img class="mb-3" width="150px" src="<?php echo e(asset('public/assets/images/empty_box.png')); ?>" />
               <br>
-              <span class="">{{ get_phrase('No data found') }}</span>
+              <span class=""><?php echo e(get_phrase('No data found')); ?></span>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
-@if(count($students) > 0)
+<?php if(count($students) > 0): ?>
 <!-- Table -->
 <div class="table-responsive student_list display-none-view" id="student_list">
   <table class="table eTable eTable-2">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">{{ get_phrase('Name') }}</th>
-        <th scope="col">{{ get_phrase('Email') }}</th>
-        <th scope="col">{{ get_phrase('User Info') }}</th>
+        <th scope="col"><?php echo e(get_phrase('Name')); ?></th>
+        <th scope="col"><?php echo e(get_phrase('Email')); ?></th>
+        <th scope="col"><?php echo e(get_phrase('User Info')); ?></th>
     </thead>
     <tbody>
-      @foreach($students as $user)
+      <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <?php
 
           $student = DB::table('users')->where('id', $user->user_id)->first();
@@ -340,7 +345,7 @@ use App\Models\Section;
       ?>
         <tr>
           <th scope="row">
-            <p class="row-number">{{ $loop->index + 1 }}</p>
+            <p class="row-number"><?php echo e($loop->index + 1); ?></p>
           </th>
           <td>
             <div
@@ -351,38 +356,41 @@ use App\Models\Section;
                   class="img-fluid"
                   width="50"
                   height="50"
-                  src="{{ asset('public/assets') }}/{{ $user_image }}"
+                  src="<?php echo e(asset('public/assets')); ?>/<?php echo e($user_image); ?>"
                 />
               </div>
               <div class="dAdmin_profile_name dAdmin_info_name">
-                <h4>{{ $student->name }}</h4>
+                <h4><?php echo e($student->name); ?></h4>
                 <p>
-                  <span>{{ get_phrase('Class') }}:</span> {{ $student_details->class_name }}
+                  <span><?php echo e(get_phrase('Class')); ?>:</span> <?php echo e($student_details->class_name); ?>
+
                 </p>
               </div>
             </div>
           </td>
           <td>
             <div class="dAdmin_info_name min-w-250px">
-              <p>{{ $student->email }}</p>
+              <p><?php echo e($student->email); ?></p>
             </div>
           </td>
           <td>
             <div class="dAdmin_info_name min-w-250px">
-              <p><span>{{ get_phrase('Phone') }}:</span> {{ $info->phone }}</p>
+              <p><span><?php echo e(get_phrase('Phone')); ?>:</span> <?php echo e($info->phone); ?></p>
               <p>
-                <span>{{ get_phrase('Address') }}:</span> {{ $info->address }}
+                <span><?php echo e(get_phrase('Address')); ?>:</span> <?php echo e($info->address); ?>
+
               </p>
             </div>
           </td>
 
         </tr>
-      @endforeach
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   </tbody>
   </table>
-  {{!! $students->appends(request()->all())->links() !!}
+  {<?php echo $students->appends(request()->all())->links(); ?>
+
 </div>
-@endif
+<?php endif; ?>
 
 
 <script type="text/javascript">
@@ -390,7 +398,7 @@ use App\Models\Section;
   "use strict";
 
   function classWiseSection(classId) {
-    let url = "{{ route('class_wise_sections', ['id' => ":classId"]) }}";
+    let url = "<?php echo e(route('class_wise_sections', ['id' => ":classId"])); ?>";
     url = url.replace(":classId", classId);
     $.ajax({
         url: url,
@@ -414,7 +422,7 @@ use App\Models\Section;
       // Choose the clonedElement and save the PDF for our user.
     var opt = {
       margin:       1,
-      filename:     'student_list_{{ date("y-m-d") }}.pdf',
+      filename:     'student_list_<?php echo e(date("y-m-d")); ?>.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2 }
     };
@@ -441,4 +449,6 @@ use App\Models\Section;
 
 
 <!-- End Students area -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\sms-educare\resources\views/admin/student/student_list.blade.php ENDPATH**/ ?>

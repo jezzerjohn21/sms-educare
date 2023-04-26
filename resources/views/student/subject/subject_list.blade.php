@@ -1,7 +1,7 @@
 <?php use App\Models\Classes; ?>
 
 @extends('student.navigation')
-   
+
 @section('content')
 <div class="mainSection-title">
     <div class="row">
@@ -30,6 +30,7 @@
         			<thead>
 						<tr>
 							<th>{{ get_phrase('Name') }}</th>
+                            <th>{{ get_phrase('teacher assigned') }}</th>
                             <th>{{ get_phrase('Class') }}</th>
 						</tr>
 					</thead>
@@ -37,6 +38,12 @@
 						@foreach($subjects as $subject)
 						<tr>
 							<td>{{ $subject['name'] }}</td>
+
+                            <td>
+                                <?php $class_details = Classes::find($subject['class_id']); ?>
+                                {{ $subject['teacher_id'] }}
+                            </td>
+
                             <td>
                                 <?php $class_details = Classes::find($subject['class_id']); ?>
                                 {{ $class_details['name'] }}
