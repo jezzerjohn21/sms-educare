@@ -1,7 +1,9 @@
 <?php use App\Models\Classes; ?>
+<?php use App\Models\User; ?>
 
 
-   
+
+
 <?php $__env->startSection('content'); ?>
 <div class="mainSection-title">
     <div class="row">
@@ -15,6 +17,7 @@
               <li><a href="#"><?php echo e(get_phrase('Home')); ?></a></li>
               <li><a href="#"><?php echo e(get_phrase('Academic')); ?></a></li>
               <li><a href="#"><?php echo e(get_phrase('Subjects')); ?></a></li>
+
             </ul>
           </div>
           <div class="export-btn-area">
@@ -25,7 +28,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-8 offset-md-2">
+    <div class="col-10 offset-md-1">
         <div class="eSection-wrap">
             <form method="GET" class="d-block ajaxForm" action="<?php echo e(route('admin.subject_list')); ?>">
                 <div class="row mt-3">
@@ -52,16 +55,23 @@
                             <th>#</th>
                             <th><?php echo e(get_phrase('Name')); ?></th>
                             <th><?php echo e(get_phrase('Class')); ?></th>
+                            <th><?php echo e(get_phrase('Assigned Teacher')); ?></th>
                             <th class="text-end"><?php echo e(get_phrase('Action')); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $class = Classes::get()->where('id', $subject->class_id)->first(); ?>
+                            <?php $teacher = User::get()->where('id', $subject->teacher_id)->first(); ?> 
+ 
                              <tr>
                                 <td><?php echo e($subjects->firstItem() + $key); ?></td>
                                 <td><?php echo e($subject->name); ?></td>
                                 <td><?php echo e($class->name); ?></td>
+                                <td> <?php echo e($teacher->name ?? 'TBA'); ?></td>
+
+
+                                
                                 <td class="text-start">
                                     <div class="adminTable-action">
                                         <button
@@ -103,4 +113,5 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('admin.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\Ekattor8\resources\views/admin/subject/subject_list.blade.php ENDPATH**/ ?>
