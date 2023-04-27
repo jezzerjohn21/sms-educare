@@ -1,8 +1,6 @@
-
-   
 <?php $__env->startSection('content'); ?>
 
-<?php 
+<?php
 
 use App\Http\Controllers\CommonController;
 use App\Models\School;
@@ -169,7 +167,7 @@ use App\Models\Section;
                   >
                     <span class="pr-10">
                       <svg
-                      
+
                         width="12.31"
                         height=".77"
                         viewBox="0 0 10.771 12.31"
@@ -214,7 +212,7 @@ use App\Models\Section;
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php 
+                    <?php
 
                         $student = DB::table('users')->where('id', $user->user_id)->first();
 
@@ -310,7 +308,7 @@ use App\Models\Section;
                   </div>
                 </div>
               </div>
-              
+
             </div>
             <?php else: ?>
             <div class="empty_box center">
@@ -336,7 +334,7 @@ use App\Models\Section;
     </thead>
     <tbody>
       <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-      <?php 
+      <?php
 
           $student = DB::table('users')->where('id', $user->user_id)->first();
 
@@ -384,7 +382,7 @@ use App\Models\Section;
               </p>
             </div>
           </td>
-          
+
         </tr>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   </tbody>
@@ -452,4 +450,5 @@ use App\Models\Section;
 
 <!-- End Students area -->
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('admin.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\Ekattor8\resources\views/admin/student/student_list.blade.php ENDPATH**/ ?>

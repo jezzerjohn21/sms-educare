@@ -1,4 +1,5 @@
 <?php use App\Models\Classes; ?>
+<?php use App\Models\User; ?>
 
 @extends('student.navigation')
 
@@ -40,8 +41,8 @@
 							<td>{{ $subject['name'] }}</td>
 
                             <td>
-                                <?php $class_details = Classes::find($subject['class_id']); ?>
-                                {{ $subject['teacher_id'] }}
+                                <?php $teacher = User::get()->where('id', $subject->teacher_id)->first(); ?> 
+                                {{  $teacher->name ?? 'TBA' }}
                             </td>
 
                             <td>

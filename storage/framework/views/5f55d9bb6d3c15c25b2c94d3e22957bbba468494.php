@@ -1,7 +1,8 @@
 <?php use App\Models\Classes; ?>
+<?php use App\Models\User; ?>
 
 
-   
+
 <?php $__env->startSection('content'); ?>
 <div class="mainSection-title">
     <div class="row">
@@ -30,6 +31,7 @@
         			<thead>
 						<tr>
 							<th><?php echo e(get_phrase('Name')); ?></th>
+                            <th><?php echo e(get_phrase('teacher assigned')); ?></th>
                             <th><?php echo e(get_phrase('Class')); ?></th>
 						</tr>
 					</thead>
@@ -37,6 +39,13 @@
 						<?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 						<tr>
 							<td><?php echo e($subject['name']); ?></td>
+
+                            <td>
+                                <?php $teacher = User::get()->where('id', $subject->teacher_id)->first(); ?> 
+                                <?php echo e($teacher->name ?? 'TBA'); ?>
+
+                            </td>
+
                             <td>
                                 <?php $class_details = Classes::find($subject['class_id']); ?>
                                 <?php echo e($class_details['name']); ?>
@@ -59,4 +68,5 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('student.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\Ekattor8\resources\views/student/subject/subject_list.blade.php ENDPATH**/ ?>

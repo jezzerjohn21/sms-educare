@@ -2,7 +2,6 @@
 
 
 
-
 <?php $__env->startSection('content'); ?>
 <div class="mainSection-title">
     <div class="row">
@@ -25,55 +24,44 @@
 
 <div class="row">
     <div class="col-7 offset-md-2">
-        <div class="eSection-wrap">
-            <form method="GET" class="d-block ajaxForm" action="<?php echo e(route('teacher.subject_list')); ?>">
-                <div class="row mt-3">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                        <select name="class_id" id="class_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
-                            <option value=""><?php echo e(get_phrase('Select a class')); ?></option>
-                            <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $class): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($class->id); ?>" <?php echo e($class_id == $class->id ?  'selected':''); ?>><?php echo e($class->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <button class="eBtn eBtn btn-secondary" type="submit" id = "filter_routine"><?php echo e(get_phrase('Filter')); ?></button>
-                    </div>
+        <div class="eSection-wrap pb-2">
+        	<?php if(count($subjects) > 0): ?>
+        		<table id="basic-datatable" class="table eTable">
+        			<thead>
+						<tr>
+							<th><?php echo e(get_phrase('Name')); ?></th>
+
+                            <th><?php echo e(get_phrase('Class')); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<tr>
+							<td><?php echo e($subject['name']); ?></td>
+                            <td>
+                                <?php $class_details = Classes::find($subject['class_id']); ?>
+                                <?php echo e($class_details['name']); ?>
+
+                            </td>
+						</tr>
+						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+					</tbody>
+        		</table>
+                <?php echo $subjects->appends(request()->all())->links(); ?>
+
+        	<?php else: ?>
+        		<div class="empty_box center">
+                    <img class="mb-3" width="150px" src="<?php echo e(asset('public/assets/images/empty_box.png')); ?>" />
+                    <br>
+                    <span class=""><?php echo e(get_phrase('No data found')); ?></span>
                 </div>
-            </form>
-
-            <?php if(count($subjects) > 0): ?>
-            <table class="table eTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th><?php echo e(get_phrase('Name')); ?></th>
-                        <th><?php echo e(get_phrase('Class')); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $class = Classes::get()->where('id', $subject->class_id)->first(); ?>
-                         <tr>
-                            <td><?php echo e($subjects->firstItem() + $key); ?></td>
-                            <td><?php echo e($subject->name); ?></td>
-                            <td><?php echo e($class->name); ?></td>
-                        </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </tbody>
-            </table>
-            <?php echo $subjects->appends(request()->all())->links(); ?>
-
-            <?php else: ?>
-            <div class="empty_box center">
-                <img class="mb-3" width="150px" src="<?php echo e(asset('public/assets/images/empty_box.png')); ?>" />
-                <br>
-                <span class=""><?php echo e(get_phrase('No data found')); ?></span>
-            </div>
-            <?php endif; ?>
+        	<?php endif; ?>
         </div>
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
+
+
+
 <?php echo $__env->make('teacher.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\Ekattor8\resources\views/teacher/subject/subject_list.blade.php ENDPATH**/ ?>

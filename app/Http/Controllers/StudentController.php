@@ -89,8 +89,14 @@ class StudentController extends Controller
             $page_data['year'] = $data['year'];
 
             $student_data = (new CommonController)->get_student_details_by_id(auth()->user()->id);
-            $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-            $sections = Section::where(['class_id' => $student_data['class_id']])->get();
+              
+            $classes = Classes::where('school_id', auth()->user()->school_id)
+                                ->where('id', $student_data['class_id'])
+                                ->get();
+ 
+            $sections = Section::where(['class_id' => $student_data['class_id']])
+                                ->where('name', $student_data['section_name'])
+                                ->get();
 
             return view('student.attendance.daily_attendance', ['student_data' => $student_data, 'classes' => $classes, 'sections' => $sections, 'page_data' => $page_data]);
         } else {
@@ -100,9 +106,13 @@ class StudentController extends Controller
             $page_data['month'] = date('M');
             $page_data['year'] = date('Y');
 
-            $student_data = (new CommonController)->get_student_details_by_id(auth()->user()->id);
-            $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-            $sections = Section::where(['class_id' => $student_data['class_id']])->get();
+            $student_data = (new CommonController)->get_student_details_by_id(auth()->user()->id);            
+            $classes = Classes::where('school_id', auth()->user()->school_id)
+                                ->where('id', $student_data['class_id'])
+                                ->get();
+            $sections = Section::where(['class_id' => $student_data['class_id']])
+                                ->where('name', $student_data['section_name'])
+                                ->get();
             return view('student.attendance.daily_attendance', ['student_data' => $student_data, 'classes' => $classes, 'sections' => $sections, 'page_data' => $page_data]);
         }
     }

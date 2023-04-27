@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-8 offset-md-2">
+    <div class="col-10 offset-md-1">
         <div class="eSection-wrap">
             <form method="GET" class="d-block ajaxForm" action="{{ route('admin.subject_list') }}">
                 <div class="row mt-3">
@@ -55,19 +55,20 @@
                             <th>#</th>
                             <th>{{ get_phrase('Name') }}</th>
                             <th>{{ get_phrase('Class') }}</th>
-                            <th>{{ get_phrase('teacher assigned') }}</th>
+                            <th>{{ get_phrase('Assigned Teacher') }}</th>
                             <th class="text-end">{{ get_phrase('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($subjects as $key => $subject)
                             <?php $class = Classes::get()->where('id', $subject->class_id)->first(); ?>
-                            <?php $teacher = User::get()->where('id', $subject->class_id)->first(); ?>
+                            <?php $teacher = User::get()->where('id', $subject->teacher_id)->first(); ?> 
+ 
                              <tr>
                                 <td>{{ $subjects->firstItem() + $key }}</td>
                                 <td>{{ $subject->name }}</td>
                                 <td>{{ $class->name }}</td>
-                                <td>{{ $subject->teacher_id }}</td>
+                                <td> {{  $teacher->name ?? 'TBA' }}</td>
 
 
                                 {{-- <option value="{{ $teach->id }}" {{ $teach->id == $subject->teacher_id ? 'selected':'' }}>{{ $teach->name }}</option> --}}
