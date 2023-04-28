@@ -535,8 +535,7 @@ class TeacherController extends Controller
 
         $no_of_users = DailyAttendances::where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->distinct()->count('student_id');
 
-        $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)
-        ->select('class_id')->distinct()->get()->toArray();
+        $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)->select('class_id')->distinct()->get()->toArray();
         $classes=array();
 
         foreach ($permissions  as  $key => $distinct_class) {
