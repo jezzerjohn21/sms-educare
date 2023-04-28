@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use App\Models\TeacherPermission;
 
@@ -13,10 +13,11 @@ use App\Models\TeacherPermission;
 		    <th scope="col">{{ get_phrase('Teacher') }}</th>
 		    <th scope="col">{{ get_phrase('Marks') }}</th>
 		    <th scope="col">{{ get_phrase('Attendance') }}</th>
+            <th scope="col">{{ get_phrase('Controll') }}</th>
 		</thead>
 		<tbody>
 		    @foreach($teachers as $teacher)
-		    <?php 
+		    <?php
 		    	$permission = TeacherPermission::where('class_id', $class_id)
 					->where('section_id', $section_id)
 					->where('teacher_id', $teacher->id)
@@ -28,7 +29,7 @@ use App\Models\TeacherPermission;
 					$permission['attendance'] = 0;
 				}
 		    ?>
-		    <?php 
+		    <?php
 		        $info = json_decode($teacher->user_information);
 		        $user_image = $info->photo;
 		        if(!empty($info->photo)){
@@ -60,6 +61,15 @@ use App\Models\TeacherPermission;
                         </div>
 		        	</div>
 		        </td>
+
+                <td>
+		        	<div class="eSwitches">
+                        <div class="form-check form-switch">
+//button for the delete permission
+                        </div>
+                    </div>
+		        	</div>
+		        </td>
 		      </tr>
 		    @endforeach
 		</tbody>
@@ -68,7 +78,7 @@ use App\Models\TeacherPermission;
 
 <!-- permission insert and update -->
 <script type="text/javascript">
-  
+
   	"use strict";
 
     function togglePermission(checkbox_id, column_name, teacher_id){

@@ -1,5 +1,5 @@
 @extends('admin.navigation')
-   
+
 @section('content')
 <div class="mainSection-title">
     <div class="row">

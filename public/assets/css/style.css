@@ -5963,8 +5963,8 @@ input[type=time]::-webkit-calendar-picker-indicator {
 }
 
 .dashboard_upcoming_events {
-  background-color: #f3416c;
-  padding-bottom: 20px;
+  background-color: royalblue;
+  padding-bottom: 10px;
 }
 
 .upcoming_events_items {

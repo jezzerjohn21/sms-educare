@@ -2,7 +2,7 @@
 
 @section('content')
 
-<?php 
+<?php
 
 use App\Http\Controllers\CommonController;
 
@@ -155,9 +155,9 @@ $student_id_count = 0;
             <p class="summary-item">{{ get_phrase('Class') }}: <span>{{ $class_name }}</span></p>
             <p class="summary-item">{{ get_phrase('Section') }}: <span>{{ $section_name }}</span></p>
             <p class="summary-item">
-              {{ get_phrase('Last Update at') }}: 
+              {{ get_phrase('Last Update at') }}:
               <?php $last_row = array_slice($attendance_of_students, -1, 1, true);
-            
+
                 foreach($last_row as $row)
                 {
                   $last_row=$row['updated_at'];
@@ -172,7 +172,7 @@ $student_id_count = 0;
                 <?php endif; ?>
               </span>
             </p>
-            <p class="summary-item">{{ get_phrase('Time') }}: 
+            <p class="summary-item">{{ get_phrase('Time') }}:
               <span>
                 <?php if ($last_row==""): ?>
                   {{ get_phrase('Not updated yet') }}
@@ -238,25 +238,25 @@ $student_id_count = 0;
               foreach(array_slice($attendance_of_students, 0, $no_of_users) as $attendance_of_student )     :  ?>
               <li class="att-count-item">
                 <div class="att-count-stu d-flex">
-                  <?php 
-                  $user_details = (new CommonController)->get_user_by_id_from_user_table($attendance_of_student['student_id']); 
+                  <?php
+                  $user_details = (new CommonController)->get_user_by_id_from_user_table($attendance_of_student['student_id']);
 
-                  if(date('m', $page_data['attendance_date']) == date('m', $attendance_of_student['timestamp'])): 
+                  if(date('m', $page_data['attendance_date']) == date('m', $attendance_of_student['timestamp'])):
 
                     if($student_id_count != $attendance_of_student['student_id']): ?>
 
                       <?php for ($i = 1; $i <= $number_of_days; $i++): ?>
 
-                        <?php 
+                        <?php
 
                         $page_data['date'] = $i.' '.$page_data['month'].' '.$page_data['year'];
 
                         $timestamp = strtotime($page_data['date']);
-                        $attendance_by_id = DailyAttendances::where([ 'student_id' => $attendance_of_student['student_id'], 'school_id' => auth()->user()->school_id, 'timestamp' => $timestamp])->first(); 
+                        $attendance_by_id = DailyAttendances::where([ 'student_id' => $attendance_of_student['student_id'], 'school_id' => auth()->user()->school_id, 'timestamp' => $timestamp])->first();
                         ?>
 
                         <?php if(isset($attendance_by_id->status) && $attendance_by_id->status == 1): ?>
-                          
+
                           <div class="present"></div>
 
                         <?php elseif(isset($attendance_by_id->status) && $attendance_by_id->status == 0): ?>
@@ -266,7 +266,7 @@ $student_id_count = 0;
                         <?php else: ?>
                             <div class="att-custom_div"></div>
                         <?php endif; ?>
-                      <?php endfor; ?>  
+                      <?php endfor; ?>
                     <?php endif; ?>
 
                     <?php $student_id_count = $attendance_of_student['student_id']; ?>
@@ -290,7 +290,7 @@ $student_id_count = 0;
 
 
 <script type="text/javascript">
-  
+
   "use strict";
 
   function classWiseSection(classId) {

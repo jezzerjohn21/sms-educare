@@ -1,4 +1,5 @@
 <?php use App\Models\Classes; ?>
+<?php use App\Models\User; ?>
 
 
 
@@ -40,8 +41,8 @@
 							<td><?php echo e($subject['name']); ?></td>
 
                             <td>
-                                <?php $class_details = Classes::find($subject['class_id']); ?>
-                                <?php echo e($subject['teacher_id']); ?>
+                                <?php $teacher = User::get()->where('id', $subject->teacher_id)->first(); ?> 
+                                <?php echo e($teacher->name ?? 'TBA'); ?>
 
                             </td>
 

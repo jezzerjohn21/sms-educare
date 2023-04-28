@@ -188,39 +188,6 @@ class TeacherController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // {
-    //     $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-
-    //     if (count($request->all()) > 0 && $request->class_id != '') {
-
-    //         $data = $request->all();
-    //         $class_id = $data['class_id'];
-    //         $subjects = Subject::where('class_id', $class_id)->paginate(10);
-    //     } else {
-    //         $subjects = Subject::where('school_id', auth()->user()->school_id)->paginate(10);
-    //         $class_id = '';
-    //     }
-
-    //     return view('teacher.subject.subject_list', dd(compact('subjects','classes', 'class_id')));
-    // }
-
     /**
      * Show the gradebook.
      *
@@ -568,7 +535,8 @@ class TeacherController extends Controller
 
         $no_of_users = DailyAttendances::where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->distinct()->count('student_id');
 
-        $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)->select('class_id')->distinct()->get()->toArray();
+        $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)
+        ->select('class_id')->distinct()->get()->toArray();
         $classes=array();
 
         foreach ($permissions  as  $key => $distinct_class) {

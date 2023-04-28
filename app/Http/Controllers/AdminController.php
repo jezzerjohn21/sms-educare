@@ -1062,6 +1062,25 @@ class AdminController extends Controller
 
     }
 
+// new funtion to delete
+    // public function teacherPermissiondelete($id)
+    // {
+    //     $teacherpermission = Teacherpermission::find($id);
+    //     $teacherpermission->delete();
+    //     $teacherpermissions = Teacherpermission::get()->where('school_id', auth()->user()->id)->where('school_id', auth()->user()->id);
+    //     return redirect()->back()->with('message','You have successfully clear permission');
+
+    // }
+
+    // public function gradeDelete($id)
+    // {
+    //     $grade = Grade::find($id);
+    //     $grade->delete();
+    //     $grades = Grade::get()->where('school_id', auth()->user()->school_id);
+    //     return redirect()->back()->with('message','You have successfully delete grade.');
+    // }
+
+
 
     /**
      * Show the offline_admission form.
