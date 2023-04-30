@@ -28,7 +28,7 @@
                 <div class="col-md-1"></div>
 
                 <div class="col-md-2">
-                    <label for="session_from" class="eForm-label"><?php echo e(get_phrase('Current session')); ?></label>
+                    <label for="session_from" class="eForm-label"><?php echo e(get_phrase('Current School Year')); ?></label>
                     <select class="form-select eForm-select eChoice-multiple-with-remove" id = "session_from" name="session_from">
                         <option value=""><?php echo e(get_phrase('Session from')); ?></option>
                         <?php $__currentLoopData = $sessions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $session): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label for="session_to" class="eForm-label"><?php echo e(get_phrase('Next session')); ?></label>
+                    <label for="session_to" class="eForm-label"><?php echo e(get_phrase('Next School Year')); ?></label>
                     <select class="form-select eForm-select eChoice-multiple-with-remove" id = "session_to" name="session_to">
                         <option value=""><?php echo e(get_phrase('Session to')); ?></option>
                         <?php $__currentLoopData = $sessions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $session): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

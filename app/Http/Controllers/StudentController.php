@@ -43,7 +43,12 @@ class StudentController extends Controller
     public function studentDashboard()
     {
         if (auth()->user()->role_id == 7) {
+
             return view('student.dashboard');
+
+
+
+
         } else {
             redirect()->route('login')
                 ->with('error', 'You are not logged in.');
@@ -89,11 +94,11 @@ class StudentController extends Controller
             $page_data['year'] = $data['year'];
 
             $student_data = (new CommonController)->get_student_details_by_id(auth()->user()->id);
-              
+
             $classes = Classes::where('school_id', auth()->user()->school_id)
                                 ->where('id', $student_data['class_id'])
                                 ->get();
- 
+
             $sections = Section::where(['class_id' => $student_data['class_id']])
                                 ->where('name', $student_data['section_name'])
                                 ->get();
@@ -106,7 +111,7 @@ class StudentController extends Controller
             $page_data['month'] = date('M');
             $page_data['year'] = date('Y');
 
-            $student_data = (new CommonController)->get_student_details_by_id(auth()->user()->id);            
+            $student_data = (new CommonController)->get_student_details_by_id(auth()->user()->id);
             $classes = Classes::where('school_id', auth()->user()->school_id)
                                 ->where('id', $student_data['class_id'])
                                 ->get();
@@ -131,7 +136,7 @@ class StudentController extends Controller
 
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
 
-      
+
         $date = '01 ' . $data['month'] . ' ' . $data['year'];
 
 
@@ -148,7 +153,7 @@ class StudentController extends Controller
 
         $no_of_users = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['school_id' => auth()->user()->school_id,  'session_id' => $active_session])->distinct()->count('student_id');
         $attendance_of_students = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['school_id' => auth()->user()->school_id, 'student_id' => auth()->user()->id, 'session_id' => $active_session])->get()->toArray();
-       
+
 
         $csv_content ="Student"."/".get_phrase('Date');
         $number_of_days = date('m', $page_data['attendance_date']) == 2 ? (date('Y', $page_data['attendance_date']) % 4 ? 28 : (date('m', $page_data['attendance_date']) % 100 ? 29 : (date('m', $page_data['attendance_date']) % 400 ? 28 : 29))) : ((date('m', $page_data['attendance_date']) - 1) % 7 % 2 ? 30 : 31);
@@ -170,9 +175,9 @@ class StudentController extends Controller
 
             $user_details = (new CommonController)->get_user_by_id_from_user_table($attendance_of_student['student_id']);
             if(date('m', $page_data['attendance_date']) == date('m', $attendance_of_student['timestamp'])) {
-                
+
                 if($student_id_count != $attendance_of_student['student_id']) {
-                    
+
                     $csv_content .= $user_details['name'] . ',';
 
                     for ($i = 1; $i <= $number_of_days; $i++) {
@@ -519,7 +524,7 @@ class StudentController extends Controller
         return view('student.fee_manager.invoice', ['invoice_details' => $invoice_details, 'student_details' => $student_details]);
     }
 
-   
+
 
     public function offlinePaymentStudent(Request $request, $id = "")
     {
@@ -533,7 +538,7 @@ class StudentController extends Controller
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
 
-                
+
                 $file->move(public_path('assets/uploads/offline_payment'), $filename);
                 $data['document_image'] = $filename;
             } else {
@@ -563,7 +568,7 @@ class StudentController extends Controller
     function profile_update(Request $request){
         $data['name'] = $request->name;
         $data['email'] = $request->email;
-        
+
         $user_info['birthday'] = strtotime($request->eDefaultDateRange);
         $user_info['gender'] = $request->gender;
         $user_info['phone'] = $request->phone;
@@ -582,7 +587,7 @@ class StudentController extends Controller
         $data['user_information'] = json_encode($user_info);
 
         User::where('id', auth()->user()->id)->update($data);
-        
+
         return redirect(route('student.profile'))->with('message', get_phrase('Profile info updated successfully'));
     }
 
@@ -592,7 +597,7 @@ class StudentController extends Controller
 
         if($action_type == 'update'){
 
-            
+
 
             if($request->new_password != $request->confirm_password){
                 return back()->with("error", "Confirm Password Doesn't match!");

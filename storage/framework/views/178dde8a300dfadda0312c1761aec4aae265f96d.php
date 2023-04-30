@@ -30,6 +30,7 @@
         			<thead>
 						<tr>
 							<th><?php echo e(get_phrase('Name')); ?></th>
+
                             <th><?php echo e(get_phrase('Class')); ?></th>
 						</tr>
 					</thead>

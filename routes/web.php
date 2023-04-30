@@ -244,6 +244,7 @@ Route::controller(AdminController::class)->middleware('admin','auth')->group(fun
     Route::get('admin/permission', 'teacherPermission')->name('admin.teacher.permission');
     Route::get('admin/permission/list/{filter}', 'teacherPermissionList')->name('admin.teacher.permission_list');
     Route::get('admin/teacher/permission_update', 'teacherPermissionUpdate')->name('admin.teacher.modify_permission');
+    // Route::get('admin/teacher/delete/{id}', 'teacherPermissionDelete')->name('admin.teacherpermission.delete');
 
 
     //Admissions routes

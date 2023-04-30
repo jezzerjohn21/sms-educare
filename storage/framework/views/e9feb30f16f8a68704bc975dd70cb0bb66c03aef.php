@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-8 offset-md-2">
+    <div class="col-10 offset-md-1">
         <div class="eSection-wrap">
             <form method="GET" class="d-block ajaxForm" action="<?php echo e(route('admin.subject_list')); ?>">
                 <div class="row mt-3">
@@ -55,19 +55,20 @@
                             <th>#</th>
                             <th><?php echo e(get_phrase('Name')); ?></th>
                             <th><?php echo e(get_phrase('Class')); ?></th>
-                            <th><?php echo e(get_phrase('teacher assigned')); ?></th>
+                            <th><?php echo e(get_phrase('Assigned Teacher')); ?></th>
                             <th class="text-end"><?php echo e(get_phrase('Action')); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $class = Classes::get()->where('id', $subject->class_id)->first(); ?>
-                            <?php $teacher = User::get()->where('id', $subject->class_id)->first(); ?>
+                            <?php $teacher = User::get()->where('id', $subject->teacher_id)->first(); ?> 
+ 
                              <tr>
                                 <td><?php echo e($subjects->firstItem() + $key); ?></td>
                                 <td><?php echo e($subject->name); ?></td>
                                 <td><?php echo e($class->name); ?></td>
-                                <td><?php echo e($subject->teacher_id); ?></td>
+                                <td> <?php echo e($teacher->name ?? 'TBA'); ?></td>
 
 
                                 
