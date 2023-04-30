@@ -36,11 +36,17 @@
                 
             </div>
             <div class="user-info-edit-items">
+
+                <div class="item">
+                    <p class="title">{{ get_phrase('Student Name') }}</p>
+                      <p class="info">{{ auth()->user()->name }}</p>
+                      </div>   
+
             <div class="item">
-                
-                <p class="title">{{ get_phrase('Student ID') }}</p>
+              <p class="title">{{ get_phrase('Student ID') }}</p>
                 <p class="info">{{ auth()->user()->code }}</p>
-                </div>
+                </div>     
+             
                 <div class="item">
                 <p class="title">{{ get_phrase('Email') }}</p>
                 <p class="info">{{ auth()->user()->email }}</p>
@@ -74,7 +80,7 @@
                     @CSRF
                     
                     <div class="fpb-7">
-                    <label for="eInputName" class="eForm-label">{{ get_phrase('Fname, Mi, Lname') }}</label>
+                    <label for="eInputName" class="eForm-label">{{ get_phrase('First Name, MI, Last Name') }}</label>
                     <input
                         type="text"
                         class="form-control eForm-control"
