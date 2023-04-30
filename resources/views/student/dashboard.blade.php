@@ -57,7 +57,7 @@
                    <div class="col-md-12">
 
 
-                    <div class="col-md-10 ms-auto">
+                    <div class="col-md-12 ms-auto">
                         <div class="dashboard_report dashboard_upcoming_events" style="background-color:	#191970">
                           <div
                             class="ds_report_header d-flex justify-content-between align-items-start"

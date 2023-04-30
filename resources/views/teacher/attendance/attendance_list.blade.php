@@ -93,13 +93,17 @@ $student_id_count = 0;
                   <?php endforeach; ?>
               </select>
             </div>
-
+ 
             <div class="att-filter-option">
               <select name="section_id" id="section_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
                 <option value="">{{ get_phrase('Select a section') }}</option>
-                  <?php $sections = Section::where(['class_id' => $page_data['class_id']])->get(); ?>
+                  <?php  $sections = Section::select("sections.name")
+                  ->join("teacher_permissions","teacher_permissions.section_id","=","sections.id")
+                 ->get();
+                  
+                  ?>
                   <?php foreach($sections as $section): ?>
-                      <option value="{{ $section['id'] }}" {{ $page_data['section_id'] == $section['id'] ?  'selected':'' }}>{{ $section['name'] }}</option>
+                      <option value="{{ $section['id'] }}" {{ $page_data['section_id'] == $section['id'] ?  'selected':'' }}>{{ $section['id'] }}</option>
                   <?php endforeach; ?>
               </select>
             </div>
@@ -293,7 +297,7 @@ $student_id_count = 0;
 
   "use strict";
 
-  function classWiseSection(classId) {
+  function classWiseSections(classId) {
     let url = "{{ route('class_wise_sections', ['id' => ":classId"]) }}";
     url = url.replace(":classId", classId);
     $.ajax({

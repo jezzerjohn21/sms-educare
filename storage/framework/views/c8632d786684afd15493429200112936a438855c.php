@@ -35,11 +35,17 @@
                 
             </div>
             <div class="user-info-edit-items">
+
+                <div class="item">
+                    <p class="title"><?php echo e(get_phrase('Student Name')); ?></p>
+                      <p class="info"><?php echo e(auth()->user()->name); ?></p>
+                      </div>   
+
             <div class="item">
-                
-                <p class="title"><?php echo e(get_phrase('Student ID')); ?></p>
+              <p class="title"><?php echo e(get_phrase('Student ID')); ?></p>
                 <p class="info"><?php echo e(auth()->user()->code); ?></p>
-                </div>
+                </div>     
+             
                 <div class="item">
                 <p class="title"><?php echo e(get_phrase('Email')); ?></p>
                 <p class="info"><?php echo e(auth()->user()->email); ?></p>
@@ -74,7 +80,7 @@
                     <?php echo csrf_field(); ?>
                     
                     <div class="fpb-7">
-                    <label for="eInputName" class="eForm-label"><?php echo e(get_phrase('Fname, Mi, Lname')); ?></label>
+                    <label for="eInputName" class="eForm-label"><?php echo e(get_phrase('First Name, MI, Last Name')); ?></label>
                     <input
                         type="text"
                         class="form-control eForm-control"

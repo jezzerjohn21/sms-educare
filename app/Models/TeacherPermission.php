@@ -12,4 +12,6 @@ class TeacherPermission extends Model
 
     protected $fillable = ['id', 'class_id', 'section_id', 'school_id', 'teacher_id', 'marks', 'attendance', 'updated_at'];
 
+ 
+
 }

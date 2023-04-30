@@ -9,7 +9,7 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-    
+
     <!-- all the css files -->
     <link rel="shortcut icon" href="<?php echo e(asset('public/assets/uploads/logo/'.get_settings('favicon'))); ?>" />
     <!-- Bootstrap CSS -->
@@ -39,9 +39,9 @@
     />
 
     <!--Toaster css-->
-    <link 
-      rel="stylesheet" 
-      type="text/css" 
+    <link
+      rel="stylesheet"
+      type="text/css"
       href="<?php echo e(asset('public/assets/css/toastr.min.css')); ?>"
     />
 
@@ -196,15 +196,17 @@
           </div>
       </li>
 
-			<li class="nav-links-li <?php echo e(request()->is('student/book*') || request()->is('student/book_issue*') || request()->is('student/noticeboard*') || request()->is('student/events/list*') ? 'showMenu':''); ?>">
+			<li class="nav-links-li <?php echo e(request()->is('student/book*') || request()->is('student/book_issue*') || request()->is('student/noticeboard*') ? 'showMenu':''); ?>">
 				<div class="iocn-link">
 					<a href="#">
 						<div class="sidebar_icon">
               <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="48" height="48"><path d="M18.5,3h-.642A4,4,0,0,0,14,0H10A4,4,0,0,0,6.142,3H5.5A5.506,5.506,0,0,0,0,8.5v10A5.506,5.506,0,0,0,5.5,24h13A5.507,5.507,0,0,0,24,18.5V8.5A5.507,5.507,0,0,0,18.5,3ZM5.5,6h13A2.5,2.5,0,0,1,21,8.5V11H3V8.5A2.5,2.5,0,0,1,5.5,6Zm13,15H5.5A2.5,2.5,0,0,1,3,18.5V14h7a2,2,0,0,0,2,2h0a2,2,0,0,0,2-2h7v4.5A2.5,2.5,0,0,1,18.5,21Z"/></svg>
 						</div>
-						<span class="link_name"><?php echo e(get_phrase('Back Office')); ?></span>
+						<span class="link_name"><?php echo e(get_phrase('others')); ?></span>
 					</a>
 					<span class="arrow">
+
+
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="4.743"
@@ -224,7 +226,7 @@
 					<li><a class="<?php echo e((request()->is('student/book/list')) ? 'active' : ''); ?>" href="<?php echo e(route('student.book.book_list')); ?>"><span><?php echo e(get_phrase('List Of Books')); ?></span></a></li>
 					<li><a class="<?php echo e((request()->is('student/book_issue')) ? 'active' : ''); ?>" href="<?php echo e(route('student.book.issued_list')); ?>"><span><?php echo e(get_phrase('Issued Book')); ?></span></a></li>
 					<li><a class="<?php echo e((request()->is('student/noticeboard*')) ? 'active' : ''); ?>" href="<?php echo e(route('student.noticeboard.list')); ?>"><span><?php echo e(get_phrase('Noticeboard')); ?></span></a></li>
-          <li><a class="<?php echo e((request()->is('student/events/list*')) ? 'active' : ''); ?>" href="<?php echo e(route('student.events.list')); ?>"><span><?php echo e(get_phrase('Events')); ?></span></a></li>
+          
 				</ul>
 			</li>
 
@@ -240,6 +242,20 @@
               </svg>
             </div>
             <span class="link_name"><?php echo e(get_phrase('Profile')); ?></span>
+          </a>
+        </div>
+      </li>
+
+      
+      <li class="nav-links-li <?php echo e(request()->is('student/profile*') ? 'showMenu':''); ?>">
+        <div class="iocn-link">
+          <a href="<?php echo e(route('student.events.list')); ?>">
+            <div class="sidebar_icon">
+
+            <svg xmlns="http://www.w3.org/2000/svg"  width="48" height="48" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16"> <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/> </svg>
+            </div>
+            <span class="link_name"><?php echo e(get_phrase('Event')); ?></span>
           </a>
         </div>
       </li>
@@ -282,7 +298,7 @@
                 </p>
               </div>
             </div>
-            
+
             <div class="col-auto">
               <div class="header-menu">
                 <ul>
@@ -467,7 +483,7 @@
   <script>
 
     "use strict";
-    
+
 		<?php if(Session::has('message')): ?>
 		toastr.options =
 		{

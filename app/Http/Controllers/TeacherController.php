@@ -31,6 +31,7 @@ use App\Models\TeacherPermission;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Stripe\Exception\PermissionException;
 
+
 class TeacherController extends Controller
 {
     /**
@@ -531,12 +532,25 @@ class TeacherController extends Controller
 
         $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
 
-        $attendance_of_students = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->get()->toArray();
+
 
         $no_of_users = DailyAttendances::where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->distinct()->count('student_id');
 
-        $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)->select('class_id')->distinct()->get()->toArray();
+        $permissions=TeacherPermission::where('teacher_id', auth()->user()->id)
+        ->where('attendance','!=' , 0)
+        ->where('class_id' , $data['class_id'])
+        ->where('section_id', $data['section_id'])
+        ->select('class_id')->distinct()->get()->toArray();
         $classes=array();
+        if(!empty($permissions)){
+            $attendance_of_students = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->get()->toArray();
+
+        }else{
+            $attendance_of_students = DailyAttendances::whereBetween('timestamp', [$first_date, $last_date])->where('id','001')->get()->toArray();
+
+        }
+
+       //dd($permissions);
 
         foreach ($permissions  as  $key => $distinct_class) {
 
