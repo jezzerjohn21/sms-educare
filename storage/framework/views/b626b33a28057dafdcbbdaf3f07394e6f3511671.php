@@ -58,7 +58,7 @@
 	<div class="sidebar">
 		<div class="logo-details mt-4 mb-3">
       <div class="img_wrapper">
-          <img height="40px" class="" src="<?php echo e(asset('public/assets/uploads/logo/'.get_settings('light_logo'))); ?>" alt="" />
+
       </div>
     </div>
 		<div class="closeIcon">
