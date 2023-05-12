@@ -1,21 +1,32 @@
-<?php
-session_start();
+<?php $__env->startSection('content'); ?>
 
-// Check if the session variable 'visited' is not set
-if(!isset($_SESSION['visited'])) {
-  // Set the session variable 'visited' to true
-  $_SESSION['visited'] = true;
-
-  // Open the text file containing the visitor count
-  $file = fopen("visitor_count.txt", "r+");
+<div class="mainSection-title">
+    <div class="row">
+        <div class="col-12">
+            <div
+              class="d-flex justify-content-between align-items-center flex-wrap gr-15"
+            >
+                <div class="d-flex flex-column">
+                    <h4><?php echo e(get_phrase('Invoice')); ?></h4>
+                    <ul class="d-flex align-items-center eBreadcrumb-2">
+                        <li><a href="#"><?php echo e(get_phrase('Home')); ?></a></li>
+                        <li><a href="#"><?php echo e(get_phrase('Fee Manager')); ?></a></li>
+                        <li><a href="#"><?php echo e(get_phrase('Invoice')); ?></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row" id="printableDiv">
   <div class="col-12">
     <div class="eSection-wrap-2">
-        <img height="60px" class="" src="{{ asset('public/assets/uploads/logo/'.get_settings('light_logo')) }}" alt="" />
-        <h4 class="invoice_title pb-21">{{ get_settings('system_title')  }} </h4>
-        <p class="sub-title">{{ get_settings('address') }}<br>
-      <h4 class="invoice_title pb-21">{{ get_phrase('INVOICE') }}</h4>
+        <img height="80px" class="" src="<?php echo e(asset('public/assets/uploads/logo/'.get_settings('light_logo'))); ?>" alt="" />
+        <h4 class="invoice_title pb-21"><?php echo e(get_phrase('Educare Schoolhouse')); ?></h4>
+          <p class="sub-title"><?php echo e(get_settings('address')); ?>></p>
+
+      <h4 class="invoice_title pb-21"><?php echo e(get_phrase('PAYMNENT DUE INVOICE')); ?></h4>
       <!-- Invoice Info -->
       <div
         class="row flex-wrap justify-content-md-between align-items-start"
@@ -23,30 +34,31 @@ if(!isset($_SESSION['visited'])) {
         <div class="col-sm-7">
           <div class="invoice_details">
             <div class="item">
-              <div class="title">{{ $student_details['name'] }}</div>
-              <p class="sub-title">{{ get_phrase('Please find below the invoice') }}</p>
+              <div class="title"><?php echo e($student_details['name']); ?></div>
+              <p class="sub-title"><?php echo e(get_phrase('Please find below the invoice')); ?></p>
             </div>
             <div class="item pt-57">
-              <div class="title">{{ get_phrase('Billing Address') }}</div>
-              <p class="sub-title">{{ $student_details['address'] }}<br>
-              <abbr title="Phone"></abbr> {{ $student_details['phone'] == "" ? '('.get_phrase('Phone number not found').')' : $student_details['phone'] }}<br></p>
+              <div class="title"><?php echo e(get_phrase('Billing Address')); ?>
+
+              <p class="sub-title"><?php echo e($student_details['address']); ?></p></div>
+              <abbr title="Phone"></abbr> <?php echo e($student_details['phone'] == "" ? '('.get_phrase('Phone number not found').')' : $student_details['phone']); ?><br></p>
             </div>
           </div>
         </div>
         <div class="col-sm-5">
           <div class="invoice_details text-sm-end">
             <div class="item">
-              <p class="sub-title">{{ get_phrase('Invoice no') }}</p>
-              <div class="title">{{ sprintf('%08d', $invoice_details['id']) }}</div>
+              <p class="sub-title"><?php echo e(get_phrase('Invoice no')); ?></p>
+              <div class="title"><?php echo e(sprintf('%08d', $invoice_details['id'])); ?></div>
             </div>
             <div class="item">
-              <p class="sub-title">{{ get_phrase('Date') }}</p>
-              <div class="title">{{ date('D, d-M-Y') }}</div>
+              <p class="sub-title"><?php echo e(get_phrase('Date')); ?></p>
+              <div class="title"><?php echo e(date('D, d-M-Y')); ?></div>
             </div>
             <?php if (strtolower($invoice_details['status']) == 'paid'): ?>
-              <span class="eBadge ebg-soft-success">{{ get_phrase('Paid') }}</span></p>
+              <span class="eBadge ebg-soft-success"><?php echo e(get_phrase('Paid')); ?></span></p>
             <?php else: ?>
-              <span class="eBadge ebg-soft-danger">{{ get_phrase('Unpaid') }}</span></p>
+              <span class="eBadge ebg-soft-danger"><?php echo e(get_phrase('Unpaid')); ?></span></p>
             <?php endif; ?>
           </div>
         </div>
@@ -58,11 +70,11 @@ if(!isset($_SESSION['visited'])) {
             <table class="table eTable eTable-2 tbody-border">
               <thead>
                 <tr>
-                  <th scope="col">{{ get_phrase('ID') }}</th>
-                  <th scope="col">{{ get_phrase('Invoice Title') }}</th>
-                  <th scope="col">{{ get_phrase('Total Amount') }}</th>
-                  <th scope="col">{{ get_phrase('Paid Amount') }}</th>
-                  <th scope="col">{{ get_phrase('Due Amount') }}</th>
+                  <th scope="col"><?php echo e(get_phrase('ID')); ?></th>
+                  <th scope="col"><?php echo e(get_phrase('Invoice Title')); ?></th>
+                  <th scope="col"><?php echo e(get_phrase('Total Amount')); ?></th>
+                  <th scope="col"><?php echo e(get_phrase('Paid Amount')); ?></th>
+                  <th scope="col"><?php echo e(get_phrase('Due Amount')); ?></th>
                 </tr>
               </thead>
               <tbody>
@@ -72,29 +84,29 @@ if(!isset($_SESSION['visited'])) {
                   </th>
                   <td>
                     <div class="dAdmin_info_name min-w-100px">
-                      <p><span>{{ get_phrase('Student Fee') }}</span></p>
-                      @php
+                      <p><span><?php echo e(get_phrase('Student Fee')); ?></span></p>
+                      <?php
                       $created_at = strtotime($invoice_details['created_at']);
                       $created_at = date('d-M-Y',$created_at);
-                      @endphp
-                      <p>{{ $created_at }}</p>
+                      ?>
+                      <p><?php echo e($created_at); ?></p>
                     </div>
                   </td>
                   <td>
                     <div class="dAdmin_info_name min-w-100px">
-                      <p>{{ school_currency($invoice_details['total_amount']) }}</p>
+                      <p><?php echo e(school_currency($invoice_details['total_amount'])); ?></p>
                     </div>
                   </td>
                   <td>
                     <div class="dAdmin_info_name">
                       <div class="dAdmin_info_name min-w-100px">
-                        <p>{{ school_currency($invoice_details['paid_amount']) }}</p>
+                        <p><?php echo e(school_currency($invoice_details['paid_amount'])); ?></p>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="dAdmin_info_name min-w-150px">
-                      <p>{{ school_currency($invoice_details['total_amount'] - $invoice_details['paid_amount']) }}</p>
+                      <p><?php echo e(school_currency($invoice_details['total_amount'] - $invoice_details['paid_amount'])); ?></p>
                     </div>
                   </td>
                 </tr>
@@ -108,36 +120,36 @@ if(!isset($_SESSION['visited'])) {
                   <tr>
                     <td>
                       <div class="dAdmin_info_name">
-                        <p>{{ get_phrase('Subtotal') }}</p>
+                        <p><?php echo e(get_phrase('Subtotal')); ?></p>
                       </div>
                     </td>
                     <td>
                       <div class="dAdmin_info_name">
-                        <p>{{ school_currency($invoice_details['total_amount']) }}</p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="dAdmin_info_name">
-                        <p>{{ get_phrase('Due') }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="dAdmin_info_name">
-                        <p>{{ school_currency($invoice_details['total_amount'] - $invoice_details['paid_amount']) }}</p>
+                        <p><?php echo e(school_currency($invoice_details['total_amount'])); ?></p>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="dAdmin_info_name">
-                        <p><span>{{ get_phrase('Grand Total') }}</span></p>
+                        <p><?php echo e(get_phrase('Due')); ?></p>
                       </div>
                     </td>
                     <td>
                       <div class="dAdmin_info_name">
-                        <p><span>{{ school_currency($invoice_details['total_amount']) }}</span></p>
+                        <p><?php echo e(school_currency($invoice_details['total_amount'] - $invoice_details['paid_amount'])); ?></p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="dAdmin_info_name">
+                        <p><span><?php echo e(get_phrase('Grand Total')); ?></span></p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="dAdmin_info_name">
+                        <p><span><?php echo e(school_currency($invoice_details['total_amount'])); ?></span></p>
                       </div>
                     </td>
                   </tr>
@@ -162,21 +174,16 @@ if(!isset($_SESSION['visited'])) {
             />
           </svg>
         </span>
-        <span>{{ get_phrase('Print Invoice') }}</span>
+        <span><?php echo e(get_phrase('Print Invoice')); ?></span>
       </a>
     </div>
   </div>
 </div>
 
-  // Read the current visitor count from the file
-  $count = fgets($file);
 
-  // Increment the visitor count
-  $count++;
+<script type="text/javascript">
 
-  // Write the new visitor count back to the file
-  fseek($file, 0);
-  fputs($file, $count);
+  "use strict"
 
   function printableDiv(printableAreaDivId) {
     var printContents = document.getElementById(printableAreaDivId).innerHTML;
@@ -190,4 +197,6 @@ if(!isset($_SESSION['visited'])) {
   }
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('student.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\sms-educare\resources\views/student/fee_manager/invoice.blade.php ENDPATH**/ ?>

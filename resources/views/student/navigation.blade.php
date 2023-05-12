@@ -10,6 +10,7 @@
     <meta content="" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <!-- all the css files -->
     <link rel="shortcut icon" href="{{ asset('public/assets/uploads/logo/'.get_settings('favicon')) }}" />
     <!-- Bootstrap CSS -->
@@ -58,7 +59,7 @@
 	<div class="sidebar">
 		<div class="logo-details mt-4 mb-3">
       <div class="img_wrapper">
-          <img height="40px" class="" src="{{ asset('public/assets/uploads/logo/'.get_settings('light_logo')) }}" alt="" />
+
       </div>
     </div>
 		<div class="closeIcon">
@@ -188,7 +189,7 @@
                       <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="48" height="48"><path d="M16.5,10c-1.972-.034-1.971-2.967,0-3h1c1.972,.034,1.971,2.967,0,3h-1Zm-3.5,4.413c0-1.476-.885-2.783-2.255-3.331l-2.376-.95c-.591-.216-.411-1.15,.218-1.132h1.181c.181,0,.343,.094,.434,.251,.415,.717,1.334,.962,2.05,.547,.717-.415,.962-1.333,.548-2.049-.511-.883-1.381-1.492-2.363-1.684-.399-1.442-2.588-1.375-2.896,.091-3.161,.875-3.414,5.6-.285,6.762l2.376,.95c.591,.216,.411,1.15-.218,1.132h-1.181c-.181,0-.343-.094-.434-.25-.415-.717-1.334-.961-2.05-.547-.717,.415-.962,1.333-.548,2.049,.511,.883,1.381,1.491,2.363,1.683,.399,1.442,2.588,1.375,2.896-.091,1.469-.449,2.54-1.817,2.54-3.431ZM18.5,1H5.5C2.468,1,0,3.467,0,6.5v11c0,3.033,2.468,5.5,5.5,5.5h3c1.972-.034,1.971-2.967,0-3h-3c-1.379,0-2.5-1.122-2.5-2.5V6.5c0-1.378,1.121-2.5,2.5-2.5h13c1.379,0,2.5,1.122,2.5,2.5v2c.034,1.972,2.967,1.971,3,0v-2c0-3.033-2.468-5.5-5.5-5.5Zm-5.205,18.481c-.813,.813-1.269,1.915-1.269,3.064,.044,.422-.21,1.464,.5,1.455,1.446,.094,2.986-.171,4.019-1.269l6.715-6.715c2.194-2.202-.9-5.469-3.157-3.343l-6.808,6.808Z"/></svg>
                   </div>
                   <span class="link_name">
-                      {{ get_phrase('Fee Manager') }}
+                      {{ get_phrase('School Fee manager') }}
                   </span>
               </a>
           </div>
@@ -203,7 +204,7 @@
                 v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337h-3.82c-0.474,0-0.859,0.384-0.859,0.859v17.61
                 c0,0.477,0.384,0.859,0.859,0.859h17.613c0.474,0,0.859-0.382,0.859-0.859V1.195C19.665,0.721,19.281,0.337,18.807,0.337z
                  M17.948,17.946H2.052V4.528h15.896V17.946z"></path></svg>
-                
+
             </div>
 						<span class="link_name">{{ get_phrase('School') }}</span>
 					</a>
@@ -229,7 +230,7 @@
 					{{-- <li><a class="{{ (request()->is('student/book/list')) ? 'active' : '' }}" href="{{ route('student.book.book_list') }}"><span>{{ get_phrase('List Of Books') }}</span></a></li> --}}
 					{{-- <li><a class="{{ (request()->is('student/book_issue')) ? 'active' : '' }}" href="{{ route('student.book.issued_list') }}"><span>{{ get_phrase('Issued Book') }}</span></a></li> --}}
 					<li><a class="{{ (request()->is('student/noticeboard*')) ? 'active' : '' }}" href="{{ route('student.noticeboard.list') }}"><span>{{ get_phrase('Noticeboard') }}</span></a></li>
-          <li><a class="{{ (request()->is('student/events/list*')) ? 'active' : '' }}" href="{{ route('student.events.list') }}"><span>{{ get_phrase('Events') }}</span></a></li>
+          {{-- <li><a class="{{ (request()->is('student/events/list*')) ? 'active' : '' }}" href="{{ route('student.events.list') }}"><span>{{ get_phrase('Events') }}</span></a></li> --}}
 				</ul>
 			</li>
 
@@ -249,8 +250,19 @@
         </div>
       </li>
 
- 
-  
+      {{-- <li><a class="{{ (request()->is('student/events/list*')) ? 'active' : '' }}" href="{{ route('student.events.list') }}"><span>{{ get_phrase('Events') }}</span></a></li> --}}
+      <li class="nav-links-li {{ request()->is('student/profile*') ? 'showMenu':'' }}">
+        <div class="iocn-link">
+          <a href="{{ route('student.events.list') }}">
+            <div class="sidebar_icon">
+
+            <svg xmlns="http://www.w3.org/2000/svg"  width="48" height="48" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16"> <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/> </svg>
+            </div>
+            <span class="link_name">{{ get_phrase('Event') }}</span>
+          </a>
+        </div>
+      </li>
 		</ul>
 	</div>
 
@@ -289,6 +301,7 @@
                 </p>
               </div>
             </div>
+
 
             <div class="col-auto">
               <div class="header-menu">

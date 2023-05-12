@@ -14,6 +14,7 @@ use App\Models\TeacherPermission;
 		    <th scope="col"><?php echo e(get_phrase('Marks')); ?></th>
 		    <th scope="col"><?php echo e(get_phrase('Attendance')); ?></th>
             <th scope="col"><?php echo e(get_phrase('Controll')); ?></th>
+            <th scope="col"><?php echo e(get_phrase('Controll')); ?></th>
 		</thead>
 		<tbody>
 		    <?php $__currentLoopData = $teachers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $teacher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -65,7 +66,7 @@ use App\Models\TeacherPermission;
                 <td>
 		        	<div class="eSwitches">
                         <div class="form-check form-switch">
-
+//button for the delete permission
                         </div>
                     </div>
 		        	</div>

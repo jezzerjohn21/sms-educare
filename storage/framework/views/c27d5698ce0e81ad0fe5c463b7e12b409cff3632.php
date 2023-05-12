@@ -2,7 +2,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-<?php
+<?php 
 
 use App\Http\Controllers\CommonController;
 
@@ -46,7 +46,7 @@ $student_id_count = 0;
           </ul>
         </div>
         <div class="export-btn-area">
-          <a href="#" class="export_btn" onclick="rightModal('<?php echo e(route('teacher.take_attendance.open_modal')); ?>', '<?php echo e(get_phrase('Take Attendance')); ?>')"><?php echo e(get_phrase('Take Attendance')); ?></a>
+          <a href="#" class="export_btn" onclick="rightModal('<?php echo e(route('admin.take_attendance.open_modal')); ?>', '<?php echo e(get_phrase('Take Attendance')); ?>')"><?php echo e(get_phrase('Take Attendance')); ?></a>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@ $student_id_count = 0;
     <div class="col-12">
       <div class="eSection-wrap-2">
         <!-- Filter area -->
-        <form method="GET" enctype="multipart/form-data" class="d-block ajaxForm" action="<?php echo e(route('teacher.daily_attendance.filter')); ?>">
+        <form method="GET" enctype="multipart/form-data" class="d-block ajaxForm" action="<?php echo e(route('admin.daily_attendance.filter')); ?>">
           <div class="att-filter d-flex flex-wrap">
             <div class="att-filter-option">
               <select name="month" id="month" class="form-select eForm-select eChoice-multiple-with-remove" required>
@@ -93,17 +93,13 @@ $student_id_count = 0;
                   <?php endforeach; ?>
               </select>
             </div>
- 
+
             <div class="att-filter-option">
               <select name="section_id" id="section_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
                 <option value=""><?php echo e(get_phrase('Select a section')); ?></option>
-                  <?php  $sections = Section::select("sections.name")
-                  ->join("teacher_permissions","teacher_permissions.section_id","=","sections.id")
-                 ->get();
-                  
-                  ?>
+                  <?php $sections = Section::where(['class_id' => $page_data['class_id']])->get(); ?>
                   <?php foreach($sections as $section): ?>
-                      <option value="<?php echo e($section['id']); ?>" <?php echo e($page_data['section_id'] == $section['id'] ?  'selected':''); ?>><?php echo e($section['id']); ?></option>
+                      <option value="<?php echo e($section['id']); ?>" <?php echo e($page_data['section_id'] == $section['id'] ?  'selected':''); ?>><?php echo e($section['name']); ?></option>
                   <?php endforeach; ?>
               </select>
             </div>
@@ -160,9 +156,9 @@ $student_id_count = 0;
             <p class="summary-item"><?php echo e(get_phrase('Class')); ?>: <span><?php echo e($class_name); ?></span></p>
             <p class="summary-item"><?php echo e(get_phrase('Section')); ?>: <span><?php echo e($section_name); ?></span></p>
             <p class="summary-item">
-              <?php echo e(get_phrase('Last Update at')); ?>:
+              <?php echo e(get_phrase('Last Update at')); ?>: 
               <?php $last_row = array_slice($attendance_of_students, -1, 1, true);
-
+            
                 foreach($last_row as $row)
                 {
                   $last_row=$row['updated_at'];
@@ -178,9 +174,9 @@ $student_id_count = 0;
                 <?php endif; ?>
               </span>
             </p>
-            <p class="summary-item"><?php echo e(get_phrase('Time')); ?>:
+            <p class="summary-item"><?php echo e(get_phrase('Time')); ?>: 
               <span>
-                <?php if ($last_row==""): ?>
+                 <?php if ($last_row==""): ?>
                   <?php echo e(get_phrase('Not updated yet')); ?>
 
                 <?php else: ?>
@@ -216,7 +212,7 @@ $student_id_count = 0;
             </ul>
           </div>
           <div class="att-content">
-            <div class="att-dayWeek">
+            <div class="admin-att att-dayWeek">
               <div class="att-wDay d-flex">
                 <?php
                 $number_of_days = date('m', $page_data['attendance_date']) == 2 ? (date('Y', $page_data['attendance_date']) % 4 ? 28 : (date('m', $page_data['attendance_date']) % 100 ? 29 : (date('m', $page_data['attendance_date']) % 400 ? 28 : 29))) : ((date('m', $page_data['attendance_date']) - 1) % 7 % 2 ? 30 : 31);
@@ -246,25 +242,25 @@ $student_id_count = 0;
               foreach(array_slice($attendance_of_students, 0, $no_of_users) as $attendance_of_student )     :  ?>
               <li class="att-count-item">
                 <div class="att-count-stu d-flex">
-                  <?php
-                  $user_details = (new CommonController)->get_user_by_id_from_user_table($attendance_of_student['student_id']);
+                  <?php 
+                  $user_details = (new CommonController)->get_user_by_id_from_user_table($attendance_of_student['student_id']); 
 
-                  if(date('m', $page_data['attendance_date']) == date('m', $attendance_of_student['timestamp'])):
+                  if(date('m', $page_data['attendance_date']) == date('m', $attendance_of_student['timestamp'])): 
 
                     if($student_id_count != $attendance_of_student['student_id']): ?>
 
                       <?php for ($i = 1; $i <= $number_of_days; $i++): ?>
 
-                        <?php
+                        <?php 
 
                         $page_data['date'] = $i.' '.$page_data['month'].' '.$page_data['year'];
 
                         $timestamp = strtotime($page_data['date']);
-                        $attendance_by_id = DailyAttendances::where([ 'student_id' => $attendance_of_student['student_id'], 'school_id' => auth()->user()->school_id, 'timestamp' => $timestamp])->first();
+                        $attendance_by_id = DailyAttendances::where([ 'student_id' => $attendance_of_student['student_id'], 'school_id' => auth()->user()->school_id, 'timestamp' => $timestamp])->first(); 
                         ?>
 
                         <?php if(isset($attendance_by_id->status) && $attendance_by_id->status == 1): ?>
-
+                          
                           <div class="present"></div>
 
                         <?php elseif(isset($attendance_by_id->status) && $attendance_by_id->status == 0): ?>
@@ -274,7 +270,7 @@ $student_id_count = 0;
                         <?php else: ?>
                             <div class="att-custom_div"></div>
                         <?php endif; ?>
-                      <?php endfor; ?>
+                      <?php endfor; ?>  
                     <?php endif; ?>
 
                     <?php $student_id_count = $attendance_of_student['student_id']; ?>
@@ -298,10 +294,10 @@ $student_id_count = 0;
 
 
 <script type="text/javascript">
-
+  
   "use strict";
 
-  function classWiseSections(classId) {
+  function classWiseSection(classId) {
     let url = "<?php echo e(route('class_wise_sections', ['id' => ":classId"])); ?>";
     url = url.replace(":classId", classId);
     $.ajax({
@@ -337,7 +333,7 @@ $student_id_count = 0;
     var role_id = '7';
     if(role_id != "" && month != "" && year != ""){
 
-      var url='<?php echo e(route("teacher.dailyAttendanceFilter_csv", "month,year,role_id")); ?>';
+      var url='<?php echo e(route("admin.dailyAttendanceFilter_csv", "month,year,role_id")); ?>';
       url = url.replace('month',month).replace('year',year).replace('role_id',role_id);
       var win = window.open(url, '_blank');
       win.focus();
@@ -352,5 +348,4 @@ $student_id_count = 0;
 </script>
 
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('teacher.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\sms-educare\resources\views/teacher/attendance/attendance_list.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\sms-educare\resources\views/admin/attendance/attendance_list.blade.php ENDPATH**/ ?>

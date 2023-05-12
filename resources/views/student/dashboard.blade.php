@@ -47,6 +47,7 @@
                 <div class="dashboard_ShortListItem">
                         <h4 class="text-dark">{{ auth()->user()->name }}</h4>
                         <p>{{ get_phrase('Welcome, to') }} {{ DB::table('schools')->where('id', auth()->user()->school_id)->value('title') }} student dashboard</p>
+                        <p>{{ get_phrase('Welcome, to') }} {{ DB::table('schools')->where('id', auth()->user()->school_id)->value('title') }} student dashboard</p>
                 </div>
             </div>
              <!-- Dashboard Short Details -->
@@ -57,7 +58,7 @@
                    <div class="col-md-12">
 
 
-                    <div class="col-md-10 ms-auto">
+                    <div class="col-md-12 ms-auto">
                         <div class="dashboard_report dashboard_upcoming_events" style="background-color:	#191970">
                           <div
                             class="ds_report_header d-flex justify-content-between align-items-start"

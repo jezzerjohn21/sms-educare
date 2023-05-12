@@ -1,5 +1,5 @@
 @extends('student.navigation')
-   
+
 @section('content')
     <!-- Start User Profile area -->
     <div class="user-profile-area d-flex flex-wrap">
@@ -21,11 +21,11 @@
                 <img width="100%" src="{{ get_user_image(auth()->user()->id) }}" alt="" />
             </div>
             <div class="userContent text-center">
-              
+
                 <p class="info" style="color:aliceblue">{{ get_phrase('Student') }}</p>
                 <p class="user-status-verify">{{ get_phrase('Verified') }}</p>
                 <br>
-                
+
             </div>
             </div>
             <div class="user-info-edit">
@@ -33,20 +33,26 @@
                 class="user-edit-title d-flex justify-content-between align-items-center">
 
                 <h3 class="title">{{ get_phrase('Details info') }}</h3>
-                
+
             </div>
             <div class="user-info-edit-items">
 
                 <div class="item">
                     <p class="title">{{ get_phrase('Student Name') }}</p>
                       <p class="info">{{ auth()->user()->name }}</p>
-                      </div>   
+                      </div>
 
             <div class="item">
-              <p class="title">{{ get_phrase('Student ID') }}</p>
+
+                <p class="title">{{ get_phrase('Student Name') }}</p>
+                <p class="info">{{ auth()->user()->name }}</p>
+            </div>
+
+            <div class="item">s
+                <p class="title">{{ get_phrase('Student ID') }}</p>
                 <p class="info">{{ auth()->user()->code }}</p>
-                </div>     
-             
+                </div>
+
                 <div class="item">
                 <p class="title">{{ get_phrase('Email') }}</p>
                 <p class="info">{{ auth()->user()->email }}</p>
@@ -66,7 +72,7 @@
         </div>
         <!-- Right side -->
         <div class="user-details-info">
-            
+
             <!-- Tab content -->
             <div class="tab-content eNav-Tabs-content" id="myTabContent">
             <div
@@ -78,7 +84,7 @@
                 <div class="eForm-layouts">
                 <form action="{{route('student.profile.update')}}" method="post" enctype="multipart/form-data">
                     @CSRF
-                    
+
                     <div class="fpb-7">
                     <label for="eInputName" class="eForm-label">{{ get_phrase('First Name, MI, Last Name') }}</label>
                     <input
@@ -106,7 +112,7 @@
                     />
                     </div>
 
-                    
+
                     <div class="fpb-7">
                     <label for="eBrithDay" class="eForm-label"
                         >{{ get_phrase('Birthday') }}</label
@@ -125,7 +131,7 @@
                         value="{{ date('m/d/Y', $birthday) }}"
                     />
                     </div>
-                    <div class="fpb-7">
+                    {{-- <div class="fpb-7">
                     <label for="eGenderList" class="eForm-label"
                         >{{ get_phrase('Sex') }}</label
                     >
@@ -136,7 +142,23 @@
                         <option value="Male" @php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'male' ? 'selected':''; @endphp>{{ get_phrase('Male') }}</option>
                         <option value="Female" @php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'female' ? 'selected':''; @endphp>{{ get_phrase('Female') }}</option>
                     </select>
-                    </div>
+                    </div> --}}
+
+                    <div class="fpb-7">
+                        <label for="eInputAddress" class="eForm-label"
+                            >{{ get_phrase('Address') }}</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control eForm-control"
+                            id="eGenderList"
+                            name="gedner"
+                            value="{{ json_decode(auth()->user()->user_information, true)['gender'] }}"
+                            placeholder="Enter Gender"
+                            aria-label="Enter Gender"
+                        />
+                        </div>
+
                     <div class="fpb-7">
                     <label for="eInputPhone" class="eForm-label"
                         >{{ get_phrase('Phone Number') }}</label
