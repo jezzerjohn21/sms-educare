@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if($date_from == "") {
     $date_from = strtotime(date('d-M-Y', strtotime(' -30 day')));
@@ -41,8 +41,18 @@ if($date_to == "") {
             <form method="GET" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('student.fee_manager.list') }}">
             	<div class="row">
                     <div class="row justify-content-md-center">
+
                     	@if($date_from != "" && $date_to !="")
-                            <div class="col-xl-3 mb-3">
+
+                        <div class="col-xl-1 mb-3">
+                            <ul class="d-flex align-items-center eBreadcrumb-5">
+
+                                <li><a href="#">{{ get_phrase('Monthly Filter') }}</a></li>
+                            </ul>
+                        </div>
+                            <div class="col-xl-2 mb-5">
+
+
                                 <input type="text" class="form-control eForm-control" name="eDateRange"
                                     value="{{ date('m/d/Y', $date_from).' - '.date('m/d/Y', $date_to) }}" />
                             </div>
@@ -75,7 +85,7 @@ if($date_to == "") {
 				        <div class="col-xl-2 mb-3">
 				            <button type="submit" class="btn btn-icon btn-secondary form-control">{{ get_phrase('Filter') }}</button>
 				        </div>
-            		
+
             			@if(count($invoices) > 0)
 				        <div class="col-md-2 ">
 		                    <div class="position-relative">
@@ -102,6 +112,8 @@ if($date_to == "") {
             	</div>
             </form>
             <div class="invoice_content" id="student_fee_manager">
+
+                <h6>Display all transaction<br></h6>
             	@if(count($invoices) > 0)
 	            	@include('student.fee_manager.list')
 	            @else
@@ -128,7 +140,7 @@ if($date_to == "") {
 	    // clone the element
 	    var clonedElement = element.cloneNode(true);
 
-	    // change display of cloned element 
+	    // change display of cloned element
 	    $(clonedElement).css("display", "block");
 
 	    // Choose the clonedElement and save the PDF for our user.

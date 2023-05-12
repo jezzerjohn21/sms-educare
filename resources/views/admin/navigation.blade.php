@@ -121,15 +121,15 @@
                 <li><a class="{{ (request()->is('admin/teacher*')) ? 'active' : '' }}" href="{{ route('admin.teacher') }}"><span>
                             {{ get_phrase('Teacher') }}
                         </span></a></li>
-                <li><a class="{{ (request()->is('admin/accountant*')) ? 'active' : '' }}" href="{{ route('admin.accountant') }}"><span>
+                {{-- <li><a class="{{ (request()->is('admin/accountant*')) ? 'active' : '' }}" href="{{ route('admin.accountant') }}"><span>
                             {{ get_phrase('Accountant') }}
-                        </span></a></li>
-                <li><a class="{{ (request()->is('admin/librarian*')) ? 'active' : '' }}" href="{{ route('admin.librarian') }}"><span>
+                        </span></a></li> --}}
+                {{-- <li><a class="{{ (request()->is('admin/librarian*')) ? 'active' : '' }}" href="{{ route('admin.librarian') }}"><span>
                             {{ get_phrase('Librarian') }}
-                        </span></a></li>
-                <li><a class="{{ (request()->is('admin/parent*')) ? 'active' : '' }}" href="{{ route('admin.parent') }}"><span>
+                        </span></a></li> --}}
+                {{-- <li><a class="{{ (request()->is('admin/parent*')) ? 'active' : '' }}" href="{{ route('admin.parent') }}"><span>
                             {{ get_phrase('Parent') }}
-                        </span></a></li>
+                        </span></a></li> --}}
                 <li><a class="{{ (request()->is('admin/student')) ? 'active' : '' }}" href="{{ route('admin.student') }}"><span>
                             {{ get_phrase('Student') }}
                         </span></a></li>
@@ -159,7 +159,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="48" height="48"><path d="M18,17.5A1.5,1.5,0,0,1,16.5,19h-1a1.5,1.5,0,0,1,0-3h1A1.5,1.5,0,0,1,18,17.5ZM13.092,14H10.908A1.5,1.5,0,0,1,8,13.5V10a4,4,0,0,1,8,0v3.5a1.5,1.5,0,0,1-2.908.5ZM11,10v1h2V10a1,1,0,0,0-2,0Zm-.569,5.947-.925.941a1.5,1.5,0,0,0-2.139,2.095s.163.187.189.211a2.757,2.757,0,0,0,3.9-.007l1.116-1.134a1.5,1.5,0,1,0-2.138-2.106ZM22,7.157V18.5A5.507,5.507,0,0,1,16.5,24h-9A5.507,5.507,0,0,1,2,18.5V5.5A5.507,5.507,0,0,1,7.5,0h7.343a5.464,5.464,0,0,1,3.889,1.611l1.657,1.657A5.464,5.464,0,0,1,22,7.157ZM18.985,7H17a2,2,0,0,1-2-2V3.015C14.947,3.012,7.5,3,7.5,3A2.5,2.5,0,0,0,5,5.5v13A2.5,2.5,0,0,0,7.5,21h9A2.5,2.5,0,0,0,19,18.5S18.988,7.053,18.985,7Z"/></svg>
                     </div>
                     <span class="link_name">
-                        {{ get_phrase('Examination') }}
+                        {{ get_phrase('Grading') }}
                     </span>
                 </a>
                 <span class="arrow">
@@ -180,16 +180,16 @@
             </div>
             <ul class="sub-menu">
                 <li>
-                    <a class="{{ (request()->is('admin/exam_category*')) ? 'active' : '' }}" href="{{ route('admin.exam_category') }}"><span>{{ get_phrase('Exam Category') }}</span></a>
+                    <a class="{{ (request()->is('admin/exam_category*')) ? 'active' : '' }}" href="{{ route('admin.exam_category') }}"><span>{{ get_phrase('Grade Period') }}</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a class="{{ (request()->is('admin/offline_exam*')) ? 'active' : '' }}" href="{{ route('admin.offline_exam') }}"><span>{{ get_phrase('Offline Exam') }}</span></a>
+                </li> --}}
+                <li>
+                    <a class="{{ (request()->is('admin/marks')) ? 'active' : '' }}" href="{{ route('admin.marks') }}"><span>{{ get_phrase('Mark Grade') }}</span></a>
                 </li>
                 <li>
-                    <a class="{{ (request()->is('admin/marks')) ? 'active' : '' }}" href="{{ route('admin.marks') }}"><span>{{ get_phrase('Marks') }}</span></a>
-                </li>
-                <li>
-                    <a class="{{ (request()->is('admin/grade')) ? 'active' : '' }}" href="{{ route('admin.grade_list') }}"><span>{{ get_phrase('Grades') }}</span></a>
+                    <a class="{{ (request()->is('admin/grade')) ? 'active' : '' }}" href="{{ route('admin.grade_list') }}"><span>{{ get_phrase('Honor Roll Guide') }}</span></a>
                 </li>
                 <li>
                     <a class="{{ (request()->is('admin/promotion*')) ? 'active' : '' }}" href="{{ route('admin.promotion') }}"><span>{{ get_phrase('Promotion') }}</span></a>
@@ -283,9 +283,9 @@
                 <li><a class="{{ (request()->is('admin/fee_manager')) ? 'active' : '' }}" href="{{ route('admin.fee_manager.list') }}"><span>
                             {{ get_phrase('Student Fee Manager') }}
                         </span></a></li>
-                <li><a class="{{ (request()->is('admin/offline_payment/pending*')) ? 'active' : '' }}" href="{{ route('admin.offline_payment_pending') }}"><span>
+                {{-- <li><a class="{{ (request()->is('admin/offline_payment/pending*')) ? 'active' : '' }}" href="{{ route('admin.offline_payment_pending') }}"><span>
                             {{ get_phrase('Offline Payment Request') }}
-                        </span></a></li>
+                        </span></a></li> --}}
                 <li><a class="{{ (request()->is('admin/expenses*')) ? 'active' : '' }}" href="{{ route('admin.expense.list') }}"><span>
                             {{ get_phrase('Expense Manager') }}
                         </span></a></li>
@@ -405,10 +405,15 @@
             <div class="iocn-link">
                 <a href="#">
                     <div class="sidebar_icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="48" height="48"><path d="M18.5,3h-.642A4,4,0,0,0,14,0H10A4,4,0,0,0,6.142,3H5.5A5.506,5.506,0,0,0,0,8.5v10A5.506,5.506,0,0,0,5.5,24h13A5.507,5.507,0,0,0,24,18.5V8.5A5.507,5.507,0,0,0,18.5,3ZM5.5,6h13A2.5,2.5,0,0,1,21,8.5V11H3V8.5A2.5,2.5,0,0,1,5.5,6Zm13,15H5.5A2.5,2.5,0,0,1,3,18.5V14h7a2,2,0,0,0,2,2h0a2,2,0,0,0,2-2h7v4.5A2.5,2.5,0,0,1,18.5,21Z"/></svg>
-                    </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="48" height="48">
+                          
+                          <path fill="true" d="M18.807,0.337h-3.616v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337H6.731
+							v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337h-3.82c-0.474,0-0.859,0.384-0.859,0.859v17.61
+							c0,0.477,0.384,0.859,0.859,0.859h17.613c0.474,0,0.859-0.382,0.859-0.859V1.195C19.665,0.721,19.281,0.337,18.807,0.337z
+							 M17.948,17.946H2.052V4.528h15.896V17.946z"></path></svg>
+                         </div>
                     <span class="link_name">
-                        {{ get_phrase('Office Work') }}
+                        {{ get_phrase('School') }}
                     </span>
                 </a>
                 <span class="arrow">
@@ -428,19 +433,20 @@
                 </span>
             </div>
             <ul class="sub-menu">
-                <li><a class="{{ (request()->is('admin/book/list')) ? 'active' : '' }}" href="{{ route('admin.book.book_list') }}"><span>
+                {{-- <li><a class="{{ (request()->is('admin/book/list')) ? 'active' : '' }}" href="{{ route('admin.book.book_list') }}"><span>
                             {{ get_phrase('Book List Manager') }}
-                        </span></a></li>
-                <li><a class="{{ (request()->is('admin/book_issue')) ? 'active' : '' }}" href="{{ route('admin.book_issue.list') }}"><span>
+                        </span></a></li> --}}
+
+                {{-- <li><a class="{{ (request()->is('admin/book_issue')) ? 'active' : '' }}" href="{{ route('admin.book_issue.list') }}"><span>
                             {{ get_phrase('Book Issue Report') }}
-                        </span></a></li>
+                        </span></a></li> --}}
                 <li><a class="{{ (request()->is('admin/noticeboard*')) ? 'active' : '' }}" href="{{ route('admin.noticeboard.list') }}"><span>
                             {{ get_phrase('Noticeboard') }}
                         </span></a></li>
-                <li><a class="{{ (request()->is('admin/subscription')) ? 'active' : '' }}" href="{{ route('admin.subscription') }}"><span>
+                {{-- <li><a class="{{ (request()->is('admin/subscription')) ? 'active' : '' }}" href="{{ route('admin.subscription') }}"><span>
                             {{ get_phrase('Subscription') }}
                         </span></a></li>
-                <li>
+                <li> --}}
                     <a class="{{ (request()->is('admin/events/list*')) ? 'active' : '' }}" href="{{ route('admin.events.list') }}"><span>{{ get_phrase('Events') }}
                     </span></a>
                 </li>

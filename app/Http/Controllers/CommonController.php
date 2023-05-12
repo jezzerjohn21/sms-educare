@@ -175,8 +175,8 @@ class CommonController extends Controller
             $marks = json_decode($query->marks, true);
             $marks[$data['subject_id']] = $data['mark'];
             $query->marks = json_encode($marks);
-            $query->comment = $data['comment'];
-            $query->save();
+            // $query->comment = $data['comment'];
+            $query->save();     
 
 
         } else {

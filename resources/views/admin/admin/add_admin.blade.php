@@ -25,12 +25,12 @@
             </div>
 
             <div class="fpb-7">
-                <label for="gender" class="eForm-label">{{ get_phrase('Gender') }}</label>
+                <label for="gender" class="eForm-label">{{ get_phrase('Sex') }}</label>
                 <select name="gender" id="gender" class="form-select eForm-select eChoice-multiple-with-remove"  required>
-                    <option value="">{{ get_phrase('Select gender') }}</option>
+                    <option value="">{{ get_phrase('Select sex') }}</option>
                     <option value="Male">{{ get_phrase('Male') }}</option>
                     <option value="Female">{{ get_phrase('Female') }}</option>
-                    <option value="Others">{{ get_phrase('Others') }}</option>
+                
                 </select>
             </div>
 

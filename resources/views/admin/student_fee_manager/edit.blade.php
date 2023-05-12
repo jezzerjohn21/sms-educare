@@ -59,9 +59,9 @@ use App\Models\User;
 			<select name="payment_method" id="payment_method" class="form-select eForm-select eChoice-multiple-with-remove">
 				<option value="">{{ get_phrase('Select a payment method') }}</option>
 				<option value="cash" <?php if ($invoice_details['payment_method'] == 'cash'): ?> selected <?php endif; ?>>{{ get_phrase('Cash') }}</option>
-				<option value="paypal" <?php if ($invoice_details['payment_method'] == 'paypal'): ?> selected <?php endif; ?>>{{ get_phrase('Paypal') }}</option>
+				{{-- <option value="paypal" <?php if ($invoice_details['payment_method'] == 'paypal'): ?> selected <?php endif; ?>>{{ get_phrase('Paypal') }}</option>
 				<option value="paytm" <?php if ($invoice_details['payment_method'] == 'paytm'): ?> selected <?php endif; ?>>{{ get_phrase('Paytm') }}</option>
-				<option value="razorpay" <?php if ($invoice_details['payment_method'] == 'razorpay'): ?> selected <?php endif; ?>>{{ get_phrase('Razorpay') }}</option>
+				<option value="razorpay" <?php if ($invoice_details['payment_method'] == 'razorpay'): ?> selected <?php endif; ?>>{{ get_phrase('Razorpay') }}</option> --}}
 			</select>
 		</div>
 		

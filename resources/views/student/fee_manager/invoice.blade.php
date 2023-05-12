@@ -24,6 +24,9 @@
 <div class="row" id="printableDiv">
   <div class="col-12">
     <div class="eSection-wrap-2">
+        <img height="60px" class="" src="{{ asset('public/assets/uploads/logo/'.get_settings('light_logo')) }}" alt="" />
+        <h4 class="invoice_title pb-21">{{ get_settings('system_title')  }} </h4>
+        <p class="sub-title">{{ get_settings('address') }}<br>
       <h4 class="invoice_title pb-21">{{ get_phrase('INVOICE') }}</h4>
       <!-- Invoice Info -->
       <div
@@ -38,7 +41,7 @@
             <div class="item pt-57">
               <div class="title">{{ get_phrase('Billing Address') }}</div>
               <p class="sub-title">{{ $student_details['address'] }}<br>
-              <abbr title="Phone">P:</abbr> {{ $student_details['phone'] == "" ? '('.get_phrase('Phone number not found').')' : $student_details['phone'] }}<br></p>
+              <abbr title="Phone"></abbr> {{ $student_details['phone'] == "" ? '('.get_phrase('Phone number not found').')' : $student_details['phone'] }}<br></p>
             </div>
           </div>
         </div>
@@ -192,6 +195,6 @@
 
     document.body.innerHTML = originalContents;
   }
-  
+
 </script>
 @endsection

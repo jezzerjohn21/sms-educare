@@ -28,9 +28,9 @@
                 <div class="col-md-1"></div>
 
                 <div class="col-md-2">
-                    <label for="session_from" class="eForm-label">{{ get_phrase('Current session') }}</label>
+                    <label for="session_from" class="eForm-label">{{ get_phrase('Current School Year') }}</label>
                     <select class="form-select eForm-select eChoice-multiple-with-remove" id = "session_from" name="session_from">
-                        <option value="">{{ get_phrase('Session from') }}</option>
+                        <option value="">{{ get_phrase('S-Y from') }}</option>
                         @foreach ($sessions as $session)
                             <option value="{{ $session->id }}">{{ $session->session_title }}</option>
                         @endforeach
@@ -38,9 +38,9 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label for="session_to" class="eForm-label">{{ get_phrase('Next session') }}</label>
+                    <label for="session_to" class="eForm-label">{{ get_phrase('Next School Year') }}</label>
                     <select class="form-select eForm-select eChoice-multiple-with-remove" id = "session_to" name="session_to">
-                        <option value="">{{ get_phrase('Session to') }}</option>
+                        <option value="">{{ get_phrase('S-Y to') }}</option>
                         @foreach ($sessions as $session)
                             <option value="{{ $session->id }}">{{ $session->session_title }}</option>
                         @endforeach

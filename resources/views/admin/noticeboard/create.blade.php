@@ -42,17 +42,17 @@
 			</div>
 
 			<div class="fpb-7">
-				<label for="show_on_website" class="eForm-label">{{ get_phrase('Show on website') }}</label>
+				<label for="show_on_website" class="eForm-label">{{ get_phrase('Show this notice') }}</label>
 				<select name="show_on_website" id="show_on_website" class="form-select eForm-select eChoice-multiple-with-remove">
 					<option value="1">{{ get_phrase('Show') }}</option>
 					<option value="0">{{ get_phrase('Do not need to show') }}</option>
 				</select>
 			</div>
 
-			<div class="fpb-7">
+			{{-- <div class="fpb-7">
                 <label for="image" class="eForm-label">{{ get_phrase('Upload notice photo') }}</label>
                 <input class="form-control eForm-control-file" type="file" id="image" name="image" accept="image/*">
-            </div>
+            </div> --}}
 
 			<div class="fpb-7 pt-2">
 				<button class="btn-form" type="submit">{{ get_phrase('Save notice') }}</button>
