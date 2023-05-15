@@ -1941,34 +1941,9 @@ class AdminController extends Controller
 
     public function markAdd(Request $request)
     {
-        $data = $request->all();
-
-        $active_session = get_school_settings(auth()->user()->school_id)->value('running_session');
-
-        $subject_wise_mark_list = Gradebook::where(['class_id' => $data['class_id'], 'section_id' => $data['section_id'], 'exam_category_id' => $data['exam_category_id'], 'student_id' => $data['student_id'], 'school_id' => auth()->user()->school_id, 'session_id' => $active_session])->get();
-
-        $result = $subject_wise_mark_list->count();
-
-        if($result > 0){
-
-            return redirect()->back()->with('message','Mark added successfully.');
-
-        } else {
-
-            $mark = array($data['subject_id'] => $data['mark']);
-
-            $marks = json_encode($mark);
-
-            $data['marks'] = $marks;
-            $data['school_id'] = auth()->user()->school_id;
-            $data['session_id'] = $active_session;
-            $data['timestamp'] = strtotime(date('Y-m-d'));
-
-            Gradebook::create($data);
-
-            return redirect()->back()->with('message','Mark added successfully.');
+    
         }
-    }
+    
 
     /**
      * Show the grade list.

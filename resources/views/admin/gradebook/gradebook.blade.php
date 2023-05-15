@@ -70,9 +70,9 @@ $index = 0;
                     @else
                     <div class="col-md-2">
                     @endif
-                        <label for="exam_category_id" class="eForm-label">{{ get_phrase('Exam') }}</label>
+                        <label for="exam_category_id" class="eForm-label">{{ get_phrase('Grading') }}</label>
                         <select name="exam_category_id" id="exam_category_id" class="form-select eForm-select eChoice-multiple-with-remove" required>
-                            <option value="">{{ get_phrase('Select a exam category') }}</option>
+                            <option value="">{{ get_phrase('Select a grading category') }}</option>
                             @foreach($exam_categories as $exam_category)
                                 <option value="{{ $exam_category->id }}" {{ $exam_category_id == $exam_category->id ?  'selected':'' }}>{{ $exam_category->name }}</option>
                             @endforeach

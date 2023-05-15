@@ -8,11 +8,11 @@
               class="d-flex justify-content-between align-items-center flex-wrap gr-15"
             >
                 <div class="d-flex flex-column">
-                    <h4>{{ get_phrase('Grades') }}</h4>
+                    <h4>{{ get_phrase('Honor roll guide') }}</h4>
                     <ul class="d-flex align-items-center eBreadcrumb-2">
                         <li><a href="#">{{ get_phrase('Home') }}</a></li>
-                        <li><a href="#">{{ get_phrase('Examination') }}</a></li>
-                        <li><a href="#">{{ get_phrase('Grades') }}</a></li>
+                        <li><a href="#">{{ get_phrase('Grading') }}</a></li>
+                        <li><a href="#">{{ get_phrase('Honor roll guide') }}</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<?php use App\Models\Section; ?>
+\<?php use App\Models\Section; ?>
 <div class="eoff-form">
     <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('admin.student.update', ['id' => $user->id]) }}">
          @csrf 
@@ -48,12 +48,12 @@
             </div>
 
             <div class="fpb-7">
-                <label for="gender" class="eForm-label">{{ get_phrase('Gender') }}</label>
+                <label for="gender" class="eForm-label">{{ get_phrase('Sex') }}</label>
                 <select name="gender" id="gender" class="form-select eForm-select eChoice-multiple-with-remove"  required>
-                    <option value="">{{ get_phrase('Select gender') }}</option>
+                    <option value="">{{ get_phrase('Select sex') }}</option>
                     <option value="Male" {{ $info->gender == 'Male' ?  'selected':'' }} >{{ get_phrase('Male') }}</option>
                     <option value="Female" {{ $info->gender == 'Female' ?  'selected':'' }}>{{ get_phrase('Female') }}</option>
-                    <option value="Others" {{ $info->gender == 'Others' ?  'selected':'' }}>{{ get_phrase('Others') }}</option>
+
                 </select>
             </div>
 

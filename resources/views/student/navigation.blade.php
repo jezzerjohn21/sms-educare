@@ -10,6 +10,7 @@
     <meta content="" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <!-- all the css files -->
     <link rel="shortcut icon" href="{{ asset('public/assets/uploads/logo/'.get_settings('favicon')) }}" />
     <!-- Bootstrap CSS -->
@@ -58,7 +59,7 @@
 	<div class="sidebar">
 		<div class="logo-details mt-4 mb-3">
       <div class="img_wrapper">
-          <img height="40px" class="" src="{{ asset('public/assets/uploads/logo/'.get_settings('light_logo')) }}" alt="" />
+
       </div>
     </div>
 		<div class="closeIcon">
@@ -136,7 +137,7 @@
                       <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="48" height="48"><path d="M18,17.5A1.5,1.5,0,0,1,16.5,19h-1a1.5,1.5,0,0,1,0-3h1A1.5,1.5,0,0,1,18,17.5ZM13.092,14H10.908A1.5,1.5,0,0,1,8,13.5V10a4,4,0,0,1,8,0v3.5a1.5,1.5,0,0,1-2.908.5ZM11,10v1h2V10a1,1,0,0,0-2,0Zm-.569,5.947-.925.941a1.5,1.5,0,0,0-2.139,2.095s.163.187.189.211a2.757,2.757,0,0,0,3.9-.007l1.116-1.134a1.5,1.5,0,1,0-2.138-2.106ZM22,7.157V18.5A5.507,5.507,0,0,1,16.5,24h-9A5.507,5.507,0,0,1,2,18.5V5.5A5.507,5.507,0,0,1,7.5,0h7.343a5.464,5.464,0,0,1,3.889,1.611l1.657,1.657A5.464,5.464,0,0,1,22,7.157ZM18.985,7H17a2,2,0,0,1-2-2V3.015C14.947,3.012,7.5,3,7.5,3A2.5,2.5,0,0,0,5,5.5v13A2.5,2.5,0,0,0,7.5,21h9A2.5,2.5,0,0,0,19,18.5S18.988,7.053,18.985,7Z"/></svg>
                   </div>
                   <span class="link_name">
-                      {{ get_phrase('Examination') }}
+                      {{ get_phrase('Grading') }}
                   </span>
               </a>
               <span class="arrow">
@@ -151,16 +152,16 @@
                     d="M1.466.247,4.5,3.277a.793.793,0,0,1,.189.288.92.92,0,0,1,0,.643A.793.793,0,0,1,4.5,4.5l-3.03,3.03a.828.828,0,0,1-.609.247.828.828,0,0,1-.609-.247.875.875,0,0,1,0-1.219L2.668,3.886.247,1.466A.828.828,0,0,1,0,.856.828.828,0,0,1,.247.247.828.828,0,0,1,.856,0,.828.828,0,0,1,1.466.247Z"
                     fill="#fff"
                     opacity="1"
-                  />
+                    />
                 </svg>
               </span>
           </div>
           <ul class="sub-menu">
               <li>
-                  <a class="{{ (request()->is('student/marks')) ? 'active' : '' }}" href="{{ route('student.marks') }}"><span>{{ get_phrase('Marks') }}</span></a>
+                  <a class="{{ (request()->is('student/marks')) ? 'active' : '' }}" href="{{ route('student.marks') }}"><span>{{ get_phrase('View Grades') }}</span></a>
               </li>
               <li>
-                  <a class="{{ (request()->is('student/grade')) ? 'active' : '' }}" href="{{ route('student.grade_list') }}"><span>{{ get_phrase('Grades') }}</span></a>
+                  <a class="{{ (request()->is('student/grade')) ? 'active' : '' }}" href="{{ route('student.grade_list') }}"><span>{{ get_phrase('Honor roll guide') }}</span></a>
               </li>
           </ul>
       </li>
@@ -188,7 +189,7 @@
                       <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="48" height="48"><path d="M16.5,10c-1.972-.034-1.971-2.967,0-3h1c1.972,.034,1.971,2.967,0,3h-1Zm-3.5,4.413c0-1.476-.885-2.783-2.255-3.331l-2.376-.95c-.591-.216-.411-1.15,.218-1.132h1.181c.181,0,.343,.094,.434,.251,.415,.717,1.334,.962,2.05,.547,.717-.415,.962-1.333,.548-2.049-.511-.883-1.381-1.492-2.363-1.684-.399-1.442-2.588-1.375-2.896,.091-3.161,.875-3.414,5.6-.285,6.762l2.376,.95c.591,.216,.411,1.15-.218,1.132h-1.181c-.181,0-.343-.094-.434-.25-.415-.717-1.334-.961-2.05-.547-.717,.415-.962,1.333-.548,2.049,.511,.883,1.381,1.491,2.363,1.683,.399,1.442,2.588,1.375,2.896-.091,1.469-.449,2.54-1.817,2.54-3.431ZM18.5,1H5.5C2.468,1,0,3.467,0,6.5v11c0,3.033,2.468,5.5,5.5,5.5h3c1.972-.034,1.971-2.967,0-3h-3c-1.379,0-2.5-1.122-2.5-2.5V6.5c0-1.378,1.121-2.5,2.5-2.5h13c1.379,0,2.5,1.122,2.5,2.5v2c.034,1.972,2.967,1.971,3,0v-2c0-3.033-2.468-5.5-5.5-5.5Zm-5.205,18.481c-.813,.813-1.269,1.915-1.269,3.064,.044,.422-.21,1.464,.5,1.455,1.446,.094,2.986-.171,4.019-1.269l6.715-6.715c2.194-2.202-.9-5.469-3.157-3.343l-6.808,6.808Z"/></svg>
                   </div>
                   <span class="link_name">
-                      {{ get_phrase('Fee Manager') }}
+                      {{ get_phrase('School Fee manager') }}
                   </span>
               </a>
           </div>
@@ -198,9 +199,14 @@
 				<div class="iocn-link">
 					<a href="#">
 						<div class="sidebar_icon">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="48" height="48"><path d="M18.5,3h-.642A4,4,0,0,0,14,0H10A4,4,0,0,0,6.142,3H5.5A5.506,5.506,0,0,0,0,8.5v10A5.506,5.506,0,0,0,5.5,24h13A5.507,5.507,0,0,0,24,18.5V8.5A5.507,5.507,0,0,0,18.5,3ZM5.5,6h13A2.5,2.5,0,0,1,21,8.5V11H3V8.5A2.5,2.5,0,0,1,5.5,6Zm13,15H5.5A2.5,2.5,0,0,1,3,18.5V14h7a2,2,0,0,0,2,2h0a2,2,0,0,0,2-2h7v4.5A2.5,2.5,0,0,1,18.5,21Z"/></svg>
-						</div>
-						<span class="link_name">{{ get_phrase('others') }}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="48" height="48">
+                <path fill="true" d="M18.807,0.337h-3.616v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337H6.731
+                v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337h-3.82c-0.474,0-0.859,0.384-0.859,0.859v17.61
+                c0,0.477,0.384,0.859,0.859,0.859h17.613c0.474,0,0.859-0.382,0.859-0.859V1.195C19.665,0.721,19.281,0.337,18.807,0.337z
+                 M17.948,17.946H2.052V4.528h15.896V17.946z"></path></svg>
+
+            </div>
+						<span class="link_name">{{ get_phrase('School') }}</span>
 					</a>
 					<span class="arrow">
 
@@ -221,8 +227,8 @@
           </span>
 				</div>
 				<ul class="sub-menu">
-					<li><a class="{{ (request()->is('student/book/list')) ? 'active' : '' }}" href="{{ route('student.book.book_list') }}"><span>{{ get_phrase('List Of Books') }}</span></a></li>
-					<li><a class="{{ (request()->is('student/book_issue')) ? 'active' : '' }}" href="{{ route('student.book.issued_list') }}"><span>{{ get_phrase('Issued Book') }}</span></a></li>
+					{{-- <li><a class="{{ (request()->is('student/book/list')) ? 'active' : '' }}" href="{{ route('student.book.book_list') }}"><span>{{ get_phrase('List Of Books') }}</span></a></li> --}}
+					{{-- <li><a class="{{ (request()->is('student/book_issue')) ? 'active' : '' }}" href="{{ route('student.book.issued_list') }}"><span>{{ get_phrase('Issued Book') }}</span></a></li> --}}
 					<li><a class="{{ (request()->is('student/noticeboard*')) ? 'active' : '' }}" href="{{ route('student.noticeboard.list') }}"><span>{{ get_phrase('Noticeboard') }}</span></a></li>
           {{-- <li><a class="{{ (request()->is('student/events/list*')) ? 'active' : '' }}" href="{{ route('student.events.list') }}"><span>{{ get_phrase('Events') }}</span></a></li> --}}
 				</ul>
@@ -295,6 +301,7 @@
                 </p>
               </div>
             </div>
+
 
             <div class="col-auto">
               <div class="header-menu">

@@ -20,11 +20,11 @@ $index = 0;
               class="d-flex justify-content-between align-items-center flex-wrap gr-15"
             >
                 <div class="d-flex flex-column">
-                    <h4>{{ get_phrase('View Marks') }}</h4>
+                    <h4>{{ get_phrase('View Grade') }}</h4>
                     <ul class="d-flex align-items-center eBreadcrumb-2">
                         <li><a href="#">{{ get_phrase('Home') }}</a></li>
-                        <li><a href="#">{{ get_phrase('Examination') }}</a></li>
-                        <li><a href="#">{{ get_phrase('Marks') }}</a></li>
+                        <li><a href="#">{{ get_phrase('grading') }}</a></li>
+                        <li><a href="#">{{ get_phrase('Grades') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -32,9 +32,79 @@ $index = 0;
     </div>
 </div>
 
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Notice Modal -->
+  <div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noticeModalLabel">Notice To Parent</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Dear Parent: <br><i>
+        This report card shows the ability and progress your child has made in the different learning areas as well as his/her core values<b>
+        </i>   <br> The school welcomes you should desire to know more about your child's progress.
+        </p>
+        <table border="2" cellpadding="1" cellspacing="1" style="width:100%">
+	<thead>
+		<tr>
+			<th scope="col">Descriptors</th>
+			<th scope="col">Grading Scale</th>
+			<th scope="col">Remarks</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Outstanding</td>
+			<td>90-100</td>
+			<td>Passed</td>
+		</tr>
+		<tr>
+			<td>Ver Satisfacoty</td>
+			<td>85-89</td>
+			<td>Passed</td>
+		</tr>
+		<tr>
+			<td>Satisfactory</td>
+			<td>80-84</td>
+			<td>Passed</td>
+		</tr>
+		<tr>
+			<td>Fairly Satisfactory</td>
+			<td>75-79</td>
+			<td>Passed</td>
+		</tr>
+		<tr>
+			<td>Did Not Meet</td>
+			<td>Below 75</td>
+			<td>Failled</td>
+		</tr>
+		<tr>
+			<td>Expectation</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="row">
     <div class="col-12">
         <div class="eSection-wrap">
+            
             <div class="export position-relative">
               <button class="eBtn-3 dropdown-toggle float-end mb-4" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                 <span class="pr-10">
@@ -43,6 +113,9 @@ $index = 0;
                   </svg>
                 </span>
                 {{ get_phrase('Export') }}
+              </button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#noticeModal">
+                Notice
               </button>
               <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2">
                 <li>

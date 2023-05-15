@@ -126,45 +126,7 @@
 	                </div>
 	              </div>
 	            </div>
-	            <div class="col-md-6">
-	              <div class="dashboard_ShortListItem">
-	                <div
-	                  class="dsHeader d-flex justify-content-between align-items-center"
-	                >
-	                  <h5 class="title"><?php echo e(get_phrase('Parents')); ?></h5>
-	                  <a href="<?php echo e(route('admin.parent')); ?>" class="ds_link ds_parent">
-	                    <svg
-	                      xmlns="http://www.w3.org/2000/svg"
-	                      width="10.146"
-	                      height="4.764"
-	                      viewBox="0 0 10.146 4.764"
-	                    >
-	                      <path
-	                        id="Read_more_icon"
-	                        data-name="Read more icon"
-	                        d="M11.337,5.978l-.84.84.941.947H3.573V8.955h7.865L10.5,9.9l.84.846L13.719,8.36Z"
-	                        transform="translate(-3.573 -5.978)"
-	                        fill="#000000"
-	                      />
-	                    </svg>
-	                  </a>
-	                </div>
-	                <div
-	                  class="dsBody d-flex justify-content-between align-items-center"
-	                >
-	                  <div class="ds_item_details">
-	                    <h4 class="total_no"><?php echo e(DB::table('users')->where('role_id', 6)->where('school_id', auth()->user()->school_id)->get()->count()); ?></h4>
-	                    <p class="total_info"><?php echo e(get_phrase('Total Parent')); ?></p>
-	                  </div>
-	                  <div class="ds_item_icon">
-	                    <img
-	                      src="<?php echo e(asset('public/assets/images/Parents_icon.png')); ?>"
-	                      alt=""
-	                    />
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
+	            
 	            <div class="col-md-6">
 	              <div class="dashboard_ShortListItem">
 	                <div
@@ -284,7 +246,7 @@
 	              <div
 	                class="ds_report_count d-flex align-items-center"
 	              >
-	                <span class="total_no"><?php echo e(currency($total_income)); ?></span>
+	                <span class="total_no">₱<?php echo e($total_income); ?></span>
 	              </div>
 	            </div>
 	            <div class="verticalMenu">

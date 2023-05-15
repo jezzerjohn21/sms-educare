@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('content'); ?>
 
    <?php
@@ -46,9 +47,11 @@
                 <div class="dashboard_ShortListItem">
                         <h4 class="text-dark"><?php echo e(auth()->user()->name); ?></h4>
                         <p><?php echo e(get_phrase('Welcome, to')); ?> <?php echo e(DB::table('schools')->where('id', auth()->user()->school_id)->value('title')); ?> student dashboard</p>
+                        <p><?php echo e(get_phrase('Welcome, to')); ?> <?php echo e(DB::table('schools')->where('id', auth()->user()->school_id)->value('title')); ?> student dashboard</p>
                 </div>
             </div>
              <!-- Dashboard Short Details -->
+
 
              <div class="col-lg-6">
                <div class="dashboard_ShortListItems">
@@ -56,7 +59,7 @@
                    <div class="col-md-12">
 
 
-                    <div class="col-md-10 ms-auto">
+                    <div class="col-md-12 ms-auto">
                         <div class="dashboard_report dashboard_upcoming_events" style="background-color:	#191970">
                           <div
                             class="ds_report_header d-flex justify-content-between align-items-start"
@@ -99,15 +102,16 @@
                       </div>
 
 
-                     
+
                    </div>
-                   
-                   
-                   
+
+
+
                  </div>
                </div>
              </div>
              <!-- Imcome Report -->
+
 
              <!-- Upcoming Events -->
              <div class="col-md-6 ms-auto">
@@ -118,6 +122,7 @@
                    <div class="ds_report_left">
                      <h4 class="title"><?php echo e(get_phrase('Upcoming Events')); ?></h4>
                    </div>
+
 
                  </div>
                  <div class="ds_report_list pt-38">

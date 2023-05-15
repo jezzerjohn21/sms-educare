@@ -1,5 +1,3 @@
-
-   
 <?php $__env->startSection('content'); ?>
     <!-- Start User Profile area -->
     <div class="user-profile-area d-flex flex-wrap">
@@ -21,11 +19,11 @@
                 <img width="100%" src="<?php echo e(get_user_image(auth()->user()->id)); ?>" alt="" />
             </div>
             <div class="userContent text-center">
-              
+
                 <p class="info" style="color:aliceblue"><?php echo e(get_phrase('Student')); ?></p>
                 <p class="user-status-verify"><?php echo e(get_phrase('Verified')); ?></p>
                 <br>
-                
+
             </div>
             </div>
             <div class="user-info-edit">
@@ -33,11 +31,16 @@
                 class="user-edit-title d-flex justify-content-between align-items-center">
 
                 <h3 class="title"><?php echo e(get_phrase('Details info')); ?></h3>
-                
+
             </div>
             <div class="user-info-edit-items">
             <div class="item">
-                
+
+                <p class="title"><?php echo e(get_phrase('Student Name')); ?></p>
+                <p class="info"><?php echo e(auth()->user()->name); ?></p>
+            </div>
+
+            <div class="item">s
                 <p class="title"><?php echo e(get_phrase('Student ID')); ?></p>
                 <p class="info"><?php echo e(auth()->user()->code); ?></p>
                 </div>
@@ -61,7 +64,7 @@
         </div>
         <!-- Right side -->
         <div class="user-details-info">
-            
+
             <!-- Tab content -->
             <div class="tab-content eNav-Tabs-content" id="myTabContent">
             <div
@@ -73,7 +76,7 @@
                 <div class="eForm-layouts">
                 <form action="<?php echo e(route('student.profile.update')); ?>" method="post" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
-                    
+
                     <div class="fpb-7">
                     <label for="eInputName" class="eForm-label"><?php echo e(get_phrase('Fname, Mi, Lname')); ?></label>
                     <input
@@ -101,7 +104,7 @@
                     />
                     </div>
 
-                    
+
                     <div class="fpb-7">
                     <label for="eBrithDay" class="eForm-label"
                         ><?php echo e(get_phrase('Birthday')); ?></label
@@ -120,18 +123,23 @@
                         value="<?php echo e(date('m/d/Y', $birthday)); ?>"
                     />
                     </div>
+                    
+
                     <div class="fpb-7">
-                    <label for="eGenderList" class="eForm-label"
-                        ><?php echo e(get_phrase('Gender')); ?></label
-                    >
-                    <select name="gender"
-                        class="form-select eForm-select eChoice-multiple-without-remove"
-                        data-placeholder="Type to search..."
-                    >
-                        <option value="Male" <?php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'male' ? 'selected':''; ?>><?php echo e(get_phrase('Male')); ?></option>
-                        <option value="Female" <?php strtolower(json_decode(auth()->user()->user_information, true)['gender']) == 'female' ? 'selected':''; ?>><?php echo e(get_phrase('Female')); ?></option>
-                    </select>
-                    </div>
+                        <label for="eInputAddress" class="eForm-label"
+                            ><?php echo e(get_phrase('Address')); ?></label
+                        >
+                        <input
+                            type="text"
+                            class="form-control eForm-control"
+                            id="eGenderList"
+                            name="gedner"
+                            value="<?php echo e(json_decode(auth()->user()->user_information, true)['gender']); ?>"
+                            placeholder="Enter Gender"
+                            aria-label="Enter Gender"
+                        />
+                        </div>
+
                     <div class="fpb-7">
                     <label for="eInputPhone" class="eForm-label"
                         ><?php echo e(get_phrase('Phone Number')); ?></label
@@ -180,4 +188,5 @@
     </div>
     <!-- End User Profile area -->
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('student.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\fernandez\sms-educare\resources\views/student/profile/view.blade.php ENDPATH**/ ?>

@@ -49,11 +49,11 @@
 			<select name="payment_method" id="payment_method" class="form-select eForm-control">
 				<option value="">{{ get_phrase('Select a payment method') }}</option>
 				<option value="cash">{{ get_phrase('Cash') }}</option>
-				<option value="paypal">{{ get_phrase('Paypal') }}</option>
+				{{-- <option value="paypal">{{ get_phrase('Paypal') }}</option>
 				<option value="paytm">{{ get_phrase('Paytm') }}</option>
 				<option value="razorpay">{{ get_phrase('Razorpay') }}</option>
 				<option value="stripe">{{ get_phrase('Stripe') }}</option>
-				<option value="flutterwave">{{ get_phrase('Flutterwave') }}</option>
+				<option value="flutterwave">{{ get_phrase('Flutterwave') }}</option> --}}
 			</select>
 		</div>
 

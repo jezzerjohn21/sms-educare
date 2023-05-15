@@ -47,6 +47,7 @@
                 <div class="dashboard_ShortListItem">
                         <h4 class="text-dark">{{ auth()->user()->name }}</h4>
                         <p>{{ get_phrase('Welcome, to') }} {{ DB::table('schools')->where('id', auth()->user()->school_id)->value('title') }} student dashboard</p>
+                        <p>{{ get_phrase('Welcome, to') }} {{ DB::table('schools')->where('id', auth()->user()->school_id)->value('title') }} student dashboard</p>
                 </div>
             </div>
              <!-- Dashboard Short Details -->

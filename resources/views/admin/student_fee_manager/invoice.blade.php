@@ -26,7 +26,10 @@
   <div class="col-12">
     <div class="eSection-wrap-2">
       <div id="printableDiv">
-        <h4 class="invoice_title pb-21">{{ get_phrase('INVOICE') }}</h4>
+             <img height="60px" class="" src="{{ asset('public/assets/uploads/logo/'.get_settings('light_logo')) }}" alt="" />
+        <h4 class="invoice_title pb-21">{{ get_settings('system_name')  }} </h4>
+        <h3 class="sub-title">{{ get_settings('address') }}</h3>
+      <h4 class="invoice_title pb-21">{{ get_phrase('INVOICE') }}</h4>
         <!-- Invoice Info -->
         <div
           class="row flex-wrap justify-content-md-between align-items-start"printableDiv

@@ -52,9 +52,9 @@ use App\Models\Grade;
         <thead>
             <tr>
                 <th scope="col">{{ get_phrase('Student name') }}</td>
-                <th scope="col">{{ get_phrase('Mark') }}</td>
-                <th scope="col">{{ get_phrase('Grade point') }}</td>
-                <th scope="col">{{ get_phrase('Comment') }}</td>
+                <th scope="col">{{ get_phrase('(Input Grade)') }}</td>
+                {{-- <th scope="col">{{ get_phrase('Grade point') }}</td> --}}
+                {{-- <th scope="col">{{ get_phrase('Comment') }}</td> --}}
                 <th scope="col">{{ get_phrase('Action') }}</td>
             </tr>   
         </thead>
@@ -93,12 +93,12 @@ use App\Models\Grade;
                     <td>
                         <input class="form-control eForm-control" type="number" id="mark-{{ $enroll_student->user_id }}" name="mark" placeholder="mark" min="0" value="{{ $user_marks }}" required onchange="get_grade(this.value, this.id)">
                     </td>
-                    <td>
+                    {{-- <td>
                         <span id="grade-for-mark-{{ $enroll_student->user_id }}">{{ get_grade($user_marks) }}</span> 
-                    </td>
-                    <td>
+                    </td> --}}
+                    {{-- <td>
                         <input class="form-control eForm-control" type="text" id="comment-{{ $enroll_student->user_id }}" name="comment" placeholder="comment" value="{{ $comment }}" required>
-                    </td>
+                    </td> --}}
                     <td class="text-center">
                         <button class="btn btn-success" onclick="mark_update('{{ $enroll_student->user_id }}')"><i class="bi bi-check2-circle"></i></button>
                     </td>
@@ -125,12 +125,12 @@ use App\Models\Grade;
         var subject_id = '{{ $page_data['subject_id'] }}';
         var exam_category_id = '{{ $page_data['exam_category_id'] }}';
         var mark = $('#mark-' + student_id).val();
-        var comment = $('#comment-' + student_id).val();
+        // var comment = $('#comment-' + student_id).val();
         if(subject_id != ""){
             $.ajax({
                 type : 'GET',
                 url : "{{ route('update.mark') }}",
-                data : {student_id : student_id, class_id : class_id, section_id : section_id, subject_id : subject_id, exam_category_id : exam_category_id, mark : mark, comment : comment},
+                data : {student_id : student_id, class_id : class_id, section_id : section_id, subject_id : subject_id, exam_category_id : exam_category_id, mark : mark},
                 success : function(response){
                     toastr.success('{{ get_phrase('Value has been updated successfully') }}');
                 }

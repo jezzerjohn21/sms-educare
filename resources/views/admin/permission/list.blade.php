@@ -65,7 +65,7 @@ use App\Models\TeacherPermission;
                 <td>
 		        	<div class="eSwitches">
                         <div class="form-check form-switch">
-//button for the delete permission
+
                         </div>
                     </div>
 		        	</div>

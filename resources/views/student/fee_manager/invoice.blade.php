@@ -1,29 +1,20 @@
-@extends('student.navigation')
+<?php
+session_start();
 
-@section('content')
+// Check if the session variable 'visited' is not set
+if(!isset($_SESSION['visited'])) {
+  // Set the session variable 'visited' to true
+  $_SESSION['visited'] = true;
 
-<div class="mainSection-title">
-    <div class="row">
-        <div class="col-12">
-            <div
-              class="d-flex justify-content-between align-items-center flex-wrap gr-15"
-            >
-                <div class="d-flex flex-column">
-                    <h4>{{ get_phrase('Invoice') }}</h4>
-                    <ul class="d-flex align-items-center eBreadcrumb-2">
-                        <li><a href="#">{{ get_phrase('Home') }}</a></li>
-                        <li><a href="#">{{ get_phrase('Fee Manager') }}</a></li>
-                        <li><a href="#">{{ get_phrase('Invoice') }}</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  // Open the text file containing the visitor count
+  $file = fopen("visitor_count.txt", "r+");
 
 <div class="row" id="printableDiv">
   <div class="col-12">
     <div class="eSection-wrap-2">
+        <img height="60px" class="" src="{{ asset('public/assets/uploads/logo/'.get_settings('light_logo')) }}" alt="" />
+        <h4 class="invoice_title pb-21">{{ get_settings('system_title')  }} </h4>
+        <p class="sub-title">{{ get_settings('address') }}<br>
       <h4 class="invoice_title pb-21">{{ get_phrase('INVOICE') }}</h4>
       <!-- Invoice Info -->
       <div
@@ -38,7 +29,7 @@
             <div class="item pt-57">
               <div class="title">{{ get_phrase('Billing Address') }}</div>
               <p class="sub-title">{{ $student_details['address'] }}<br>
-              <abbr title="Phone">P:</abbr> {{ $student_details['phone'] == "" ? '('.get_phrase('Phone number not found').')' : $student_details['phone'] }}<br></p>
+              <abbr title="Phone"></abbr> {{ $student_details['phone'] == "" ? '('.get_phrase('Phone number not found').')' : $student_details['phone'] }}<br></p>
             </div>
           </div>
         </div>
@@ -177,10 +168,15 @@
   </div>
 </div>
 
+  // Read the current visitor count from the file
+  $count = fgets($file);
 
-<script type="text/javascript">
+  // Increment the visitor count
+  $count++;
 
-  "use strict"
+  // Write the new visitor count back to the file
+  fseek($file, 0);
+  fputs($file, $count);
 
   function printableDiv(printableAreaDivId) {
     var printContents = document.getElementById(printableAreaDivId).innerHTML;
@@ -192,6 +188,6 @@
 
     document.body.innerHTML = originalContents;
   }
-  
+
 </script>
 @endsection

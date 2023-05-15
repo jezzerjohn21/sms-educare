@@ -8,15 +8,15 @@
           class="d-flex justify-content-between align-items-center flex-wrap gr-15"
         >
           <div class="d-flex flex-column">
-            <h4>{{ get_phrase('Exam Category') }}</h4>
+            <h4>{{ get_phrase('Grade Category') }}</h4>
             <ul class="d-flex align-items-center eBreadcrumb-2">
               <li><a href="#">{{ get_phrase('Home') }}</a></li>
-              <li><a href="#">{{ get_phrase('Examination') }}</a></li>
-              <li><a href="#">{{ get_phrase('Exam Category') }}</a></li>
+              <li><a href="#">{{ get_phrase('Grading') }}</a></li>
+              <li><a href="#">{{ get_phrase('Grade Period') }}</a></li>
             </ul>
           </div>
           <div class="export-btn-area">
-            <a href="javascript:;" class="export_btn" onclick="rightModal('{{ route('admin.exam_category.open_modal') }}', '{{ get_phrase('Create Exam Category') }}')">{{ get_phrase('Add Exam Category') }}</a>
+            <a href="javascript:;" class="export_btn" onclick="rightModal('{{ route('admin.exam_category.open_modal') }}', '{{ get_phrase('Create Grade Period Category') }}')">{{ get_phrase('Add Grade Period Category') }}</a>
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end eDropdown-menu-2 eDropdown-table-action"
                                     >
                                         <li>
-                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.exam_category', ['id' => $exam_category->id]) }}', '{{ get_phrase('Edit Exam Category') }}')">{{ get_phrase('Edit') }}</a>
+                                            <a class="dropdown-item" href="javascript:;" onclick="rightModal('{{ route('admin.edit.exam_category', ['id' => $exam_category->id]) }}', '{{ get_phrase('Edit Grade Period Category') }}')">{{ get_phrase('Edit') }}</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="javascript:;" onclick="confirmModal('{{ route('admin.exam_category.delete', ['id' => $exam_category->id]) }}', 'undefined');">{{ get_phrase('Delete') }}</a>

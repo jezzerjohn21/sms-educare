@@ -126,7 +126,7 @@
 	                </div>
 	              </div>
 	            </div>
-	            <div class="col-md-6">
+	            {{-- <div class="col-md-6">
 	              <div class="dashboard_ShortListItem">
 	                <div
 	                  class="dsHeader d-flex justify-content-between align-items-center"
@@ -164,7 +164,7 @@
 	                  </div>
 	                </div>
 	              </div>
-	            </div>
+	            </div> --}}
 	            <div class="col-md-6">
 	              <div class="dashboard_ShortListItem">
 	                <div
@@ -284,7 +284,7 @@
 	              <div
 	                class="ds_report_count d-flex align-items-center"
 	              >
-	                <span class="total_no">{{ currency($total_income) }}</span>
+	                <span class="total_no">₱{{ $total_income }}</span>
 	              </div>
 	            </div>
 	            <div class="verticalMenu">
