@@ -47,11 +47,8 @@
 			<select name="payment_method" id="payment_method" class="form-select eForm-select eChoice-multiple-with-remove">
 				<option value=""><?php echo e(get_phrase('Select a payment method')); ?></option>
 				<option value="cash"><?php echo e(get_phrase('Cash')); ?></option>
-				<option value="paypal"><?php echo e(get_phrase('Paypal')); ?></option>
-				<option value="paytm"><?php echo e(get_phrase('Paytm')); ?></option>
-				<option value="razorpay"><?php echo e(get_phrase('Razorpay')); ?></option>
-				<option value="stripe"><?php echo e(get_phrase('Stripe')); ?></option>
-				<option value="flutterwave"><?php echo e(get_phrase('Flutterwave')); ?></option>
+				
+				
 			</select>
 		</div>
 

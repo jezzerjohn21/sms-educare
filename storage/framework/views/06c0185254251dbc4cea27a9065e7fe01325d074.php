@@ -204,8 +204,8 @@ use App\Models\Section;
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Student ID #</th>
-                    <th scope="col"><?php echo e(get_phrase('Full Name')); ?></th>
+                    <th scope="col">LRN#</th>
+                    <th scope="col"><?php echo e(get_phrase('Student Name')); ?></th>
                     <th scope="col"><?php echo e(get_phrase('Email')); ?></th>
                     <th scope="col"><?php echo e(get_phrase('User Info')); ?></th>
                     <th scope="col"><?php echo e(get_phrase('Options')); ?></th>
@@ -226,7 +226,7 @@ use App\Models\Section;
                           <p class="row-number"><?php echo e($students->firstItem() + $key); ?></p>
                         </th>
                         <th scope="row">
-                          <p class="row-number"><?php echo e($student->code); ?></p>
+                          <p class="row-number"><?php echo e($student->lrn); ?></p>
                         </th>
                         <td>
                           <div
@@ -241,7 +241,7 @@ use App\Models\Section;
                               />
                             </div>
                             <div class="dAdmin_profile_name dAdmin_info_name">
-                              <h4><?php echo e($student->name); ?></h4>
+                              <h4><?php echo e($student->display_name); ?></h4>
                               <p>
                                 <span><?php echo e(get_phrase('Class')); ?>:</span> <?php echo e($student_details->class_name); ?>
 

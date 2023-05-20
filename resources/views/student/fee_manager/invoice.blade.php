@@ -1,13 +1,25 @@
-<?php
-session_start();
+@extends('student.navigation')
 
-// Check if the session variable 'visited' is not set
-if(!isset($_SESSION['visited'])) {
-  // Set the session variable 'visited' to true
-  $_SESSION['visited'] = true;
+@section('content')
 
-  // Open the text file containing the visitor count
-  $file = fopen("visitor_count.txt", "r+");
+<div class="mainSection-title">
+    <div class="row">
+        <div class="col-12">
+            <div
+              class="d-flex justify-content-between align-items-center flex-wrap gr-15"
+            >
+                <div class="d-flex flex-column">
+                    <h4>{{ get_phrase('Invoice') }}</h4>
+                    <ul class="d-flex align-items-center eBreadcrumb-2">
+                        <li><a href="#">{{ get_phrase('Home') }}</a></li>
+                        <li><a href="#">{{ get_phrase('Fee Manager') }}</a></li>
+                        <li><a href="#">{{ get_phrase('Invoice') }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row" id="printableDiv">
   <div class="col-12">
@@ -168,15 +180,10 @@ if(!isset($_SESSION['visited'])) {
   </div>
 </div>
 
-  // Read the current visitor count from the file
-  $count = fgets($file);
 
-  // Increment the visitor count
-  $count++;
+<script type="text/javascript">
 
-  // Write the new visitor count back to the file
-  fseek($file, 0);
-  fputs($file, $count);
+  "use strict"
 
   function printableDiv(printableAreaDivId) {
     var printContents = document.getElementById(printableAreaDivId).innerHTML;

@@ -1124,16 +1124,20 @@ class AdminController extends Controller
         $data['user_information'] = json_encode($info);
 
         $duplicate_user_check = User::get()->where('email', $data['email']);
+        $duplicate_user_check_lrn = User::get()->where('lrn', $data['lrn']);
 
 
 
         if(count($duplicate_user_check) == 0) {
+            if(count($duplicate_user_check_lrn) == 0) {
 
             $user = User::create([
                 'name' => $data['name'],
+                'display_name' => $data['display_name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'code' => student_code(),
+                'lrn' => $data['lrn'],
                 'role_id' => '7',
                 'school_id' => auth()->user()->school_id,
                 'user_information' => $data['user_information'],
@@ -1147,11 +1151,12 @@ class AdminController extends Controller
                 'session_id' => $active_session,
             ]);
 
+
             return redirect()->back()->with('message','Admission successfully done.');
 
-        } else {
+        }} else {
 
-            return redirect()->back()->with('error','Sorry this email has been taken');
+            return redirect()->back()->with('error','Sorry this email or lrn has been taken');
         }
     }
 
@@ -1941,9 +1946,9 @@ class AdminController extends Controller
 
     public function markAdd(Request $request)
     {
-    
+
         }
-    
+
 
     /**
      * Show the grade list.

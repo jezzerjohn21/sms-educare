@@ -121,9 +121,9 @@
                 <li><a class="{{ (request()->is('admin/teacher*')) ? 'active' : '' }}" href="{{ route('admin.teacher') }}"><span>
                             {{ get_phrase('Teacher') }}
                         </span></a></li>
-                {{-- <li><a class="{{ (request()->is('admin/accountant*')) ? 'active' : '' }}" href="{{ route('admin.accountant') }}"><span>
+                <li><a class="{{ (request()->is('admin/accountant*')) ? 'active' : '' }}" href="{{ route('admin.accountant') }}"><span>
                             {{ get_phrase('Accountant') }}
-                        </span></a></li> --}}
+                        </span></a></li>
                 {{-- <li><a class="{{ (request()->is('admin/librarian*')) ? 'active' : '' }}" href="{{ route('admin.librarian') }}"><span>
                             {{ get_phrase('Librarian') }}
                         </span></a></li> --}}
@@ -406,7 +406,7 @@
                 <a href="#">
                     <div class="sidebar_icon">
                         <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="48" height="48">
-                          
+
                           <path fill="true" d="M18.807,0.337h-3.616v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337H6.731
 							v1.808c0,0.475-0.384,0.859-0.859,0.859c-0.474,0-0.859-0.384-0.859-0.859V0.337h-3.82c-0.474,0-0.859,0.384-0.859,0.859v17.61
 							c0,0.477,0.384,0.859,0.859,0.859h17.613c0.474,0,0.859-0.382,0.859-0.859V1.195C19.665,0.721,19.281,0.337,18.807,0.337z

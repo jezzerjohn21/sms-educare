@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'parent_id', 'school_id', 'code', 'user_information', 'department_id', 'designation'
+        'name', 'display_name', 'email', 'password', 'role_id', 'parent_id', 'school_id', 'code', 'lrn', 'user_information', 'department_id', 'designation'
     ];
 
     /**
@@ -48,6 +48,6 @@ class User extends Authenticatable
 
      public function getTomoNameAttribute()
     {
-        return $this->checkEnrollment()->class_id;  
+        return $this->checkEnrollment()->class_id;
     }
 }
