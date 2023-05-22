@@ -1,5 +1,5 @@
 @extends('admin.navigation')
-   
+
 @section('content')
 <div class="mainSection-title">
     <div class="row">
@@ -17,8 +17,8 @@
 				</div>
 	          	<div class="row mb-3">
 	                <div class="expense_add">
-	                    <a href="javascript:;" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('{{ route('admin.fee_manager.open_modal', ['value' => 'single']) }}', '{{ get_phrase('Add Single Invoice') }}')"><i class="bi bi-plus"></i>{{ get_phrase('Add Single Invoice') }}</a>
-	                    <a href="javascript:;" class="btn btn-outline-success float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('{{ route('admin.fee_manager.open_modal', ['value' => 'mass']) }}', '{{ get_phrase('Add Mass Invoice') }}')"><i class="bi bi-plus"></i>{{ get_phrase('Add Mass Invoice') }}</a>
+	                    <a href="javascript:;" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('{{ route('admin.fee_manager.open_modal', ['value' => 'single']) }}', '{{ get_phrase('Add Single Invoice') }}')"><i class="bi bi-plus"></i>{{ get_phrase('Add Single payment') }}</a>
+	                    <a href="javascript:;" class="btn btn-outline-success float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('{{ route('admin.fee_manager.open_modal', ['value' => 'mass']) }}', '{{ get_phrase('Add Mass Invoice') }}')"><i class="bi bi-plus"></i>{{ get_phrase('Add Montly Due Payment') }}</a>
 	                </div>
 	            </div>
 	        </div>
@@ -86,7 +86,7 @@
 				        <div class="col-xl-2 mb-3">
 				            <button type="submit" class="eBtn eBtn btn-secondary form-control">{{ get_phrase('Filter') }}</button>
 				        </div>
-				        <?php 
+				        <?php
 		            	if($selected_class == ""){
 						    $sel_class = 'all';
 						} else {
@@ -139,7 +139,7 @@
             		</div>
             	</div>
             </form>
-            
+
             <div class="invoice_content" id="student_fee_manager">
 	            @include('admin.student_fee_manager.list')
 	        </div>
@@ -159,7 +159,7 @@
 	    // clone the element
 	    var clonedElement = element.cloneNode(true);
 
-	    // change display of cloned element 
+	    // change display of cloned element
 	    $(clonedElement).css("display", "block");
 
 	    // Choose the clonedElement and save the PDF for our user.

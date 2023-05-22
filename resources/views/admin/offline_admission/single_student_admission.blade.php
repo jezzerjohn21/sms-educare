@@ -4,8 +4,8 @@
       position: absolute;
     }
   </style>
-  
- 
+
+
 
 
 
@@ -14,7 +14,7 @@
 
 <div class="eForm-layouts">
     <form method="POST" enctype="multipart/form-data" class="d-block ajaxForm" action="{{ route('admin.offline_admission.create') }}">
-        @csrf 
+        @csrf
         <div class="row fmb-14 justify-content-between align-items-center">
             <label for="name" class="col-sm-2 col-eForm-label">{{ get_phrase('First Name') }}</label>
             <div class="col-sm-10 col-md-9 col-lg-10">
@@ -37,9 +37,24 @@
         </div>
 
         <div class="row fmb-14 justify-content-between align-items-center">
-            
+
             <div class="col-sm-10 col-md-9 col-lg-10">
                 <input type="text" class="form-control eForm-control hidden-input" id="fullName" readonly name="name">
+            </div>
+        </div>
+<br>
+        <div class="row fmb-14 justify-content-between align-items-center">
+            <label for="name"
+                class="col-sm-2 col-eForm-label">{{ get_phrase('Display Name') }}</label>
+            <div class="col-sm-10 col-md-9 col-lg-10">
+                <input type="text" class="form-control eForm-control" id="display_name" name="display_name" required>
+            </div>
+        </div>
+<br>
+        <div class="row fmb-14 justify-content-between align-items-center">
+            <label for="lrn" class="col-sm-2 col-eForm-label">{{ get_phrase('Learning referrence(LRN)') }}</label>
+            <div class="col-md-10">
+                <input type="text" id="lrn" name="lrn" class="form-control eForm-control" required>
             </div>
         </div>
 
@@ -94,7 +109,7 @@
                     <option value="">{{ get_phrase('Select sex') }}</option>
                     <option value="Male">{{ get_phrase('Male') }}</option>
                     <option value="Female">{{ get_phrase('Female') }}</option>
-                   
+
                 </select>
             </div>
         </div>
@@ -151,12 +166,12 @@
     var middleName = document.getElementById('middleName');
     var lastName = document.getElementById('lastName');
     var fullName = document.getElementById('fullName');
-    
+
     // Add input event listeners to firstName, middleName, lastName
     firstName.addEventListener('input', combineInputs);
     middleName.addEventListener('input', combineInputs);
     lastName.addEventListener('input', combineInputs);
-    
+
     // Function to combine input values and update the fullName input
     function combineInputs() {
       var combinedValue = firstName.value + " " + middleName.value + " " + lastName.value;

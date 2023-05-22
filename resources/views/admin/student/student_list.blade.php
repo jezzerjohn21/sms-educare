@@ -204,8 +204,8 @@ use App\Models\Section;
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Student ID #</th>
-                    <th scope="col">{{ get_phrase('Full Name') }}</th>
+                    <th scope="col">LRN#</th>
+                    <th scope="col">{{ get_phrase('Student Name') }}</th>
                     <th scope="col">{{ get_phrase('Email') }}</th>
                     <th scope="col">{{ get_phrase('User Info') }}</th>
                     <th scope="col">{{ get_phrase('Options') }}</th>
@@ -226,7 +226,7 @@ use App\Models\Section;
                           <p class="row-number">{{ $students->firstItem() + $key }}</p>
                         </th>
                         <th scope="row">
-                          <p class="row-number">{{ $student->code}}</p>
+                          <p class="row-number">{{ $student->lrn}}</p>
                         </th>
                         <td>
                           <div
@@ -241,7 +241,7 @@ use App\Models\Section;
                               />
                             </div>
                             <div class="dAdmin_profile_name dAdmin_info_name">
-                              <h4>{{ $student->name }}</h4>
+                              <h4>{{ $student->display_name }}</h4>
                               <p>
                                 <span>{{ get_phrase('Class') }}:</span> {{ $student_details->class_name }}
                                 <br>

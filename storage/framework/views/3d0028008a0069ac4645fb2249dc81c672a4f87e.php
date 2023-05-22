@@ -1,5 +1,3 @@
-
-   
 <?php $__env->startSection('content'); ?>
 <div class="mainSection-title">
     <div class="row">
@@ -17,8 +15,8 @@
 				</div>
 	          	<div class="row mb-3">
 	                <div class="expense_add">
-	                    <a href="javascript:;" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('<?php echo e(route('admin.fee_manager.open_modal', ['value' => 'single'])); ?>', '<?php echo e(get_phrase('Add Single Invoice')); ?>')"><i class="bi bi-plus"></i><?php echo e(get_phrase('Add Single Invoice')); ?></a>
-	                    <a href="javascript:;" class="btn btn-outline-success float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('<?php echo e(route('admin.fee_manager.open_modal', ['value' => 'mass'])); ?>', '<?php echo e(get_phrase('Add Mass Invoice')); ?>')"><i class="bi bi-plus"></i><?php echo e(get_phrase('Add Mass Invoice')); ?></a>
+	                    <a href="javascript:;" class="btn btn-outline-primary float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('<?php echo e(route('admin.fee_manager.open_modal', ['value' => 'single'])); ?>', '<?php echo e(get_phrase('Add Single Invoice')); ?>')"><i class="bi bi-plus"></i><?php echo e(get_phrase('Add Single payment')); ?></a>
+	                    <a href="javascript:;" class="btn btn-outline-success float-end m-1" data-bs-toggle="tooltip" onclick="rightModal('<?php echo e(route('admin.fee_manager.open_modal', ['value' => 'mass'])); ?>', '<?php echo e(get_phrase('Add Mass Invoice')); ?>')"><i class="bi bi-plus"></i><?php echo e(get_phrase('Add Montly Due Payment')); ?></a>
 	                </div>
 	            </div>
 	        </div>
@@ -86,7 +84,7 @@
 				        <div class="col-xl-2 mb-3">
 				            <button type="submit" class="eBtn eBtn btn-secondary form-control"><?php echo e(get_phrase('Filter')); ?></button>
 				        </div>
-				        <?php 
+				        <?php
 		            	if($selected_class == ""){
 						    $sel_class = 'all';
 						} else {
@@ -140,7 +138,7 @@
             		</div>
             	</div>
             </form>
-            
+
             <div class="invoice_content" id="student_fee_manager">
 	            <?php echo $__env->make('admin.student_fee_manager.list', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	        </div>
@@ -160,7 +158,7 @@
 	    // clone the element
 	    var clonedElement = element.cloneNode(true);
 
-	    // change display of cloned element 
+	    // change display of cloned element
 	    $(clonedElement).css("display", "block");
 
 	    // Choose the clonedElement and save the PDF for our user.
